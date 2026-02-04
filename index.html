@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth" style="scroll-padding-top: 6rem;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mader Boxing - Box Hradec Králové</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Konfigurace barev pro Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#87CEEB', // Sky Blue
+                            dark: '#003459',  // Prussian Blue
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'], // Předpokládá se použití systémového fontu nebo Google Font
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Vlastní styly pro výběr textu */
+        ::selection {
+            background-color: #87CEEB;
+            color: #003459;
+        }
+
+        /* Animace pro Hero sekci */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        /* Bounce animace pro statistiky */
+        @keyframes bounce-slow {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .animate-bounce-slow {
+            animation: bounce-slow 3s infinite;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-slate-800 bg-white">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-6">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-tight text-brand-dark">
+                MADER<span class="text-brand-light">BOXING</span>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about"
+                    class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">O
+                    mně</a>
+                <a href="#services"
+                    class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Služby</a>
+                <a href="#pricing"
+                    class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Ceník</a>
+                <a href="#contact"
+                    class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Kontakt</a>
+                <a href="#contact"
+                    class="px-6 py-2 bg-brand-dark text-white font-semibold rounded-full hover:bg-[#004e8a] transition-colors shadow-lg shadow-blue-900/10">
+                    Rezervovat lekci
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-brand-dark">
+                <i data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="hidden absolute top-full left-0 w-full bg-white shadow-lg md:hidden flex-col items-center py-8 space-y-6 animate-fade-in">
+            <a href="#about" class="mobile-link text-lg font-medium text-brand-dark">O mně</a>
+            <a href="#services" class="mobile-link text-lg font-medium text-brand-dark">Služby</a>
+            <a href="#pricing" class="mobile-link text-lg font-medium text-brand-dark">Ceník</a>
+            <a href="#contact" class="mobile-link text-lg font-medium text-brand-dark">Kontakt</a>
+            <a href="#contact"
+                class="mobile-link px-8 py-3 bg-brand-dark text-white font-semibold rounded-full w-3/4 text-center">
+                Rezervovat lekci
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <!-- Abstract Background Element -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-[#f0f9ff] -z-10 skew-x-12 translate-x-20 hidden md:block">
+        </div>
+
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8 animate-fade-in">
+                <div
+                    class="inline-flex items-center space-x-2 px-3 py-1 bg-brand-light/20 text-brand-dark rounded-full text-sm font-semibold tracking-wide">
+                    <span class="w-2 h-2 bg-brand-dark rounded-full animate-pulse"></span>
+                    <span>BOX V HRADCI KRÁLOVÉ</span>
+                </div>
+
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-brand-dark leading-tight">
+                    Efektivní <br />
+                    <span class="relative inline-block">
+                        cesta
+                        <span class="absolute bottom-2 left-0 w-full h-3 bg-brand-light/40 -z-10"></span>
+                    </span> k vaší formě.
+                </h1>
+
+                <p class="text-lg text-slate-600 max-w-lg leading-relaxed">
+                    Soukromé lekce boxu pod vedením aktivního boxera Samuela Madera.
+                    Technika, kondice a disciplína Cruiserweight divize přizpůsobená vašim cílům.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact"
+                        class="px-8 py-4 bg-brand-dark text-white font-bold rounded-lg hover:bg-[#004e8a] transition-all transform hover:-translate-y-1 shadow-xl shadow-blue-900/20 flex items-center justify-center gap-2">
+                        Začít trénovat <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#about"
+                        class="px-8 py-4 bg-white border-2 border-[#f0f4f8] text-brand-dark font-bold rounded-lg hover:border-brand-light transition-colors flex items-center justify-center">
+                        Poznat trenéra
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative h-[500px] md:h-[700px] w-full animate-fade-in delay-200">
+                <!-- Image Placeholder -->
+                <div class="absolute inset-0 bg-slate-100 rounded-2xl overflow-hidden shadow-2xl">
+                    <img src="img/hero3.jpg" alt="Samuel Mader"
+                        class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent"></div>
+                </div>
+
+                <!-- Floating Stats Card - Modified -->
+                <div
+                    class="absolute bottom-10 -left-6 md:left-10 bg-white p-6 rounded-xl shadow-xl border border-slate-100 max-w-xs animate-bounce-slow">
+                    <div class="flex items-center space-x-4 mb-2">
+                        <div class="p-2 bg-brand-light/20 rounded-lg text-brand-dark">
+                            <i data-lucide="shield" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500 uppercase tracking-wider">Trenér</p>
+                            <p class="text-xl font-bold text-brand-dark">Aktivní sportovec</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 pl-14">Zkušenosti z ringu</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar - Modified to remove specific record/license -->
+    <section class="bg-brand-dark py-12 text-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/10">
+                <div>
+                    <p class="text-3xl md:text-4xl font-bold text-brand-light mb-1"><i data-lucide="user-check"
+                            class="inline w-8 h-8"></i></p>
+                    <p class="text-sm md:text-base text-slate-300 mt-2">Aktivní boxer</p>
+                </div>
+                <div>
+                    <p class="text-3xl md:text-4xl font-bold text-brand-light mb-1">60 min</p>
+                    <p class="text-sm md:text-base text-slate-300">Délka lekce</p>
+                </div>
+                <div>
+                    <p class="text-3xl md:text-4xl font-bold text-brand-light mb-1">HK</p>
+                    <p class="text-sm md:text-base text-slate-300">Hradec Králové</p>
+                </div>
+                <div>
+                    <p class="text-3xl md:text-4xl font-bold text-brand-light mb-1">90 kg</p>
+                    <p class="text-sm md:text-base text-slate-300">Cruiserweight</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white relative">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="md:w-1/2 relative">
+                    <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl relative z-10">
+                        <img src="img/hero2.jpg" alt="Boxing Silhouette" class="w-full h-full object-cover" />
+                        <div class="absolute inset-0 bg-brand-dark/20 mix-blend-multiply"></div>
+                    </div>
+                    <div
+                        class="absolute top-10 -right-10 w-full h-full border-4 border-brand-light rounded-2xl -z-0 hidden md:block">
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 space-y-8">
+                    <div>
+                        <h2 class="text-sm font-bold tracking-widest text-brand-light uppercase mb-2">O trenérovi</h2>
+                        <h3 class="text-4xl font-bold text-brand-dark mb-6">Samuel Mader</h3>
+                        <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                            Box není jen sport, je to životní styl vyžadující absolutní disciplínu. Se zkušenostmi z
+                            křížové váhy (Cruiserweight) přináším do tréninku realitu ringu, nikoliv jen teorii.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed">
+                            Boxu se věnuji naplno a neustále pracuji na svém rozvoji. Od té doby, co jsem poprvé
+                            vstoupil do ringu, se věnuji nejen vlastní kariéře, ale i předávání zkušeností. Nerozlišuji
+                            mezi začátečníkem, který chce zhubnout, a sportovcem, který chce pilovat techniku. Vyžaduji
+                            pouze odhodlání.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg">
+                            <i data-lucide="shield" class="text-brand-dark w-6 h-6"></i>
+                            <span class="font-medium text-slate-700">Cruiserweight Divize</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg">
+                            <i data-lucide="award" class="text-brand-dark w-6 h-6"></i>
+                            <span class="font-medium text-slate-700">BoxRec ID: 1372224</span>
+                        </div>
+                    </div>
+
+                    <a href="https://boxrec.com/en/box-am/1372224" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center text-brand-dark font-bold hover:text-brand-light transition-colors border-b-2 border-brand-dark hover:border-brand-light pb-1">
+                        Zobrazit profil na BoxRec <i data-lucide="chevron-right" class="ml-1 w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-sm font-bold tracking-widest text-brand-light uppercase mb-2">Služby</h2>
+                <h3 class="text-4xl font-bold text-brand-dark mb-4">Investice do vašich schopností</h3>
+                <p class="text-slate-600">
+                    Intenzivní <span class="font-bold text-brand-dark">60 minut</span> tréninku.
+                    Maximální efektivita, žádné prostoje. Každá minuta zaměřená na váš progres.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border-t-4 border-brand-light">
+                    <div
+                        class="w-12 h-12 bg-brand-light/20 rounded-xl flex items-center justify-center text-brand-dark mb-6">
+                        <i data-lucide="shield" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-4">Technická Preciznost</h4>
+                    <p class="text-slate-600 mb-6">
+                        Detailní rozbor postoje, úderů a obrany. Odstranění zlozvyků a budování pevných základů, které
+                        fungují i pod tlakem.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-2 text-sm text-slate-700">
+                            <i data-lucide="check-circle" class="text-brand-light mt-1 w-4 h-4 shrink-0"></i>
+                            <span>Korekce práce nohou</span>
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-slate-700">
+                            <i data-lucide="check-circle" class="text-brand-light mt-1 w-4 h-4 shrink-0"></i>
+                            <span>Efektivní mechanika úderu</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 - Highlighted -->
+                <div
+                    class="bg-brand-dark p-8 rounded-2xl shadow-2xl transform md:-translate-y-4 text-white relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-brand-light opacity-10 rounded-full blur-2xl -mr-16 -mt-16">
+                    </div>
+                    <div
+                        class="w-12 h-12 bg-brand-light rounded-xl flex items-center justify-center text-brand-dark mb-6">
+                        <i data-lucide="clock" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-4">Soukromá Lekce 60 min</h4>
+                    <p class="text-slate-300 mb-6">
+                        Komplexní jednotka zahrnující zahřátí, technický dril, kondiční blok a stretching. Maximální
+                        fokus pouze na vás.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-2 text-sm text-slate-200">
+                            <i data-lucide="check-circle" class="text-brand-light mt-1 w-4 h-4 shrink-0"></i>
+                            <span>100% individuální přístup</span>
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-slate-200">
+                            <i data-lucide="check-circle" class="text-brand-light mt-1 w-4 h-4 shrink-0"></i>
+                            <span>Prevence zranění díky přípravě</span>
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-slate-200">
+                            <i data-lucide="check-circle" class="text-brand-light mt-1 w-4 h-4 shrink-0"></i>
+                            <span>Závěrečný feedback</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border-t-4 border-brand-light">
+                    <div
+                        class="w-12 h-12 bg-brand-light/20 rounded-xl flex items-center justify-center text-brand-dark mb-6">
+                        <i data-lucide="award" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-4">Fyzická & Mentální Síla</h4>
+                    <p class="text-slate-600 mb-6">
+                        Box není jen o svalech. Je to cesta k sebevědomí, redukci stresu a zlepšení celkové kondice.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-2 text-sm text-slate-700">
+                            <i data-lucide="check-circle" class="text-brand-light mt-1 w-4 h-4 shrink-0"></i>
+                            <span>Efektivní spalování tuků</span>
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-slate-700">
+                            <i data-lucide="check-circle" class="text-brand-light mt-1 w-4 h-4 shrink-0"></i>
+                            <span>Zvýšení postřehu a reakce</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 bg-white relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div
+            class="absolute top-0 left-0 w-64 h-64 bg-[#f0f9ff] rounded-full blur-3xl -z-10 translate-x-[-50%] translate-y-[-50%]">
+        </div>
+        <div
+            class="absolute bottom-0 right-0 w-96 h-96 bg-[#f0f9ff] rounded-full blur-3xl -z-10 translate-x-[30%] translate-y-[30%]">
+        </div>
+
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-sm font-bold tracking-widest text-brand-light uppercase mb-2">Ceník</h2>
+                <h3 class="text-4xl font-bold text-brand-dark mb-4">Vyberte si svůj plán</h3>
+                <p class="text-slate-600">
+                    Transparentní ceny za poctivý trénink. Žádné skryté poplatky.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Pricing Option 1: Individual -->
+                <div
+                    class="bg-white border border-slate-100 p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-brand-dark"></div>
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h4 class="text-xl font-bold text-brand-dark mb-1">Individuální trénink</h4>
+                            <p class="text-sm text-slate-500">Jeden na jednoho</p>
+                        </div>
+                        <div class="p-3 bg-[#f0f9ff] rounded-lg text-brand-dark">
+                            <i data-lucide="user" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-brand-dark">700 Kč</span>
+                        <span class="text-slate-500"> / lekce</span>
+                    </div>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-slate-700">
+                            <i data-lucide="check-circle" class="text-brand-light w-5 h-5"></i>
+                            <span>100% pozornost trenéra</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-700">
+                            <i data-lucide="check-circle" class="text-brand-light w-5 h-5"></i>
+                            <span>Maximální přizpůsobení tempa</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-700">
+                            <i data-lucide="check-circle" class="text-brand-light w-5 h-5"></i>
+                            <span>Délka trvání 60 minut</span>
+                        </li>
+                    </ul>
+
+                    <a href="#contact"
+                        class="block w-full text-center py-3 bg-brand-dark text-white font-bold rounded-lg hover:bg-[#004e8a] transition-colors group-hover:shadow-lg">
+                        Rezervovat individuálně
+                    </a>
+                </div>
+
+                <!-- Pricing Option 2: Group -->
+                <div
+                    class="bg-white border border-slate-100 p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-brand-light"></div>
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h4 class="text-xl font-bold text-brand-dark mb-1">Skupina</h4>
+                            <p class="text-sm text-slate-500">Trénink ve dvojici a více</p>
+                        </div>
+                        <div class="p-3 bg-[#f0f9ff] rounded-lg text-brand-dark">
+                            <i data-lucide="users" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-brand-dark">600 Kč</span>
+                        <span class="text-slate-500"> / osoba</span>
+                    </div>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-slate-700">
+                            <i data-lucide="check-circle" class="text-brand-light w-5 h-5"></i>
+                            <span>Motivace díky sparing partnerovi</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-700">
+                            <i data-lucide="check-circle" class="text-brand-light w-5 h-5"></i>
+                            <span>Nácviky ve dvojicích</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-700">
+                            <i data-lucide="check-circle" class="text-brand-light w-5 h-5"></i>
+                            <span>Délka trvání 60 minut</span>
+                        </li>
+                    </ul>
+
+                    <a href="#contact"
+                        class="block w-full text-center py-3 bg-white border-2 border-brand-dark text-brand-dark font-bold rounded-lg hover:bg-[#f0f9ff] transition-colors">
+                        Rezervovat pro skupinu
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div
+                class="bg-[#f0f9ff] rounded-3xl p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10 border border-brand-light/20">
+                <div class="md:w-2/3">
+                    <h3 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">Připraveni vstoupit do ringu?</h3>
+                    <p class="text-lg text-slate-600">
+                        Ať už jste manažer hledající odreagování, nebo sportovec s ambicí závodit. Začněte svou
+                        transformaci v Hradci Králové ještě dnes.
+                    </p>
+                </div>
+                <div class="md:w-1/3 flex justify-center md:justify-end w-full">
+                    <a href="#contact"
+                        class="w-full md:w-auto px-8 py-4 bg-brand-dark text-white font-bold rounded-lg hover:bg-[#004e8a] transition-colors shadow-lg shadow-blue-900/10 text-center">
+                        Chci termín tréninku
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16">
+                <div class="space-y-8">
+                    <div>
+                        <h2 class="text-sm font-bold tracking-widest text-brand-light uppercase mb-2">Kontakt</h2>
+                        <h3 class="text-4xl font-bold text-brand-dark mb-6">Kde trénujeme</h3>
+                        <p class="text-slate-600 mb-8">
+                            Tréninky probíhají v plně vybaveném zázemí BOX CLUB Hradec Králové. Kvalitní ring, pytle a
+                            atmosféra, která vás vybičuje k výkonu.
+                        </p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-slate-50 rounded-full text-brand-dark">
+                                <i data-lucide="map-pin" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark">Adresa</h4>
+                                <p class="text-slate-600">Československé armády 216/41</p>
+                                <p class="text-slate-600">500 03 Hradec Králové</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-slate-50 rounded-full text-brand-dark">
+                                <i data-lucide="phone" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark">Telefon</h4>
+                                <a href="tel:+420603108606"
+                                    class="text-slate-600 hover:text-brand-light transition-colors">
+                                    +420 603 108 606
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-slate-50 rounded-full text-brand-dark">
+                                <i data-lucide="mail" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark">E-mail</h4>
+                                <a href="mailto:boxhk@seznam.cz"
+                                    class="text-slate-600 hover:text-brand-light transition-colors">
+                                    boxhk@seznam.cz
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Simple Map Placeholder -->
+                    <div class="w-full h-48 bg-slate-100 rounded-xl overflow-hidden relative">
+                        <div class="absolute inset-0 flex items-center justify-center bg-brand-dark/5">
+                            <span class="text-slate-400 font-medium">Interaktivní mapa (Google Maps Embed)</span>
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            <i data-lucide="map-pin" class="text-brand-dark animate-bounce w-10 h-10"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reservation Form -->
+                <div class="bg-slate-50 p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <h4 class="text-2xl font-bold text-brand-dark mb-6">Napište mi</h4>
+                    <form class="space-y-4"
+                        onsubmit="event.preventDefault(); alert('Děkuji za zprávu! Brzy se vám ozvu.');">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Jméno</label>
+                            <input type="text"
+                                class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-light focus:ring-2 focus:ring-brand-light/20 outline-none transition-all"
+                                placeholder="Vaše jméno" required />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Telefon</label>
+                            <input type="tel"
+                                class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-light focus:ring-2 focus:ring-brand-light/20 outline-none transition-all"
+                                placeholder="+420" required />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">E-mail</label>
+                            <input type="email"
+                                class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-light focus:ring-2 focus:ring-brand-light/20 outline-none transition-all"
+                                placeholder="vas@email.cz" required />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Zpráva (nepovinné)</label>
+                            <textarea rows="4"
+                                class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-light focus:ring-2 focus:ring-brand-light/20 outline-none transition-all resize-none"
+                                placeholder="Mám zájem o..."></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full py-4 bg-brand-dark text-white font-bold rounded-lg hover:bg-[#004e8a] transition-all transform hover:-translate-y-1 shadow-lg">
+                            Odeslat poptávku
+                        </button>
+                        <p class="text-xs text-center text-slate-400 mt-4">
+                            Odesláním souhlasíte se zpracováním osobních údajů pro účely kontaktování.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white py-12 border-t border-white/10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-2xl font-bold tracking-tight">
+                    MADER<span class="text-brand-light">BOXING</span>
+                </div>
+                <div class="text-slate-300 text-sm">
+                    © 2026 Samuel Mader. Všechna práva vyhrazena.
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-brand-light transition-colors"><i data-lucide="instagram"
+                            class="w-6 h-6"></i></a>
+                    <a href="#" class="hover:text-brand-light transition-colors"><i data-lucide="mail"
+                            class="w-6 h-6"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript logic -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Logic
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/95', 'backdrop-blur-sm', 'shadow-sm', 'py-4');
+                navbar.classList.remove('bg-transparent', 'py-6');
+            } else {
+                navbar.classList.add('bg-transparent', 'py-6');
+                navbar.classList.remove('bg-white/95', 'backdrop-blur-sm', 'shadow-sm', 'py-4');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                mobileMenuBtn.innerHTML = '<i data-lucide="x" class="w-7 h-7"></i>';
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+                mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-7 h-7"></i>';
+            }
+            lucide.createIcons(); // Re-render icons after changing HTML
+        });
+
+        // Close mobile menu when clicking a link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+                mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-7 h-7"></i>';
+                lucide.createIcons();
+            });
+        });
+    </script>
+</body>
+
+</html>
