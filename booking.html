@@ -79,10 +79,10 @@
                     <div>
                         <h3 class="font-bold text-brand-dark text-lg mb-2">Informace k rezervacím</h3>
                         <p class="text-slate-700 leading-relaxed mb-4">
-                            <strong>Soukromé tréninky</strong> si domlouvejte prosím přímo telefonicky nebo přes Instagram. Individuální přístup vyžaduje individuální domluvu.
+                            <strong>Pravidelné časy tréninků</strong> si prosím domlouvejte přímo se mnou – telefonicky nebo přes Instagram. Společně tak najdeme termín, který vám bude dlouhodobě vyhovovat.
                         </p>
                         <p class="text-slate-700 leading-relaxed">
-                            Do tohoto rezervačního systému vypisuji <strong>pouze uvolněné termíny</strong> (tzv. last minute) a to vždy maximálně <strong>týden dopředu</strong>.
+                            Pro <strong>jednorázové tréninky</strong> prosím primárně využívejte tento rezervační systém níže. Nové termíny se vypisují vždy v <strong>neděli na následující týden</strong>.
                         </p>
                         
                         <div class="flex flex-wrap gap-4 mt-4">
@@ -96,22 +96,45 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Přidané upozornění na storno podmínky nad kalendářem -->
+            <div class="mt-6 text-center animate-fade-in delay-200">
+                <p class="text-sm text-slate-600 bg-white inline-block px-5 py-2.5 rounded-full border border-slate-200 shadow-sm">
+                    <i data-lucide="alert-circle" class="inline w-4 h-4 mr-1 mb-0.5 text-red-500"></i>
+                    Zrušení rezervace je bezplatné <strong>nejpozději 12 hodin předem</strong>. Více v <a href="podminky.html" class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">podmínkách</a>.
+                </p>
+            </div>
         </div>
 
         <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100 min-h-[600px]">
             <div class="reenio-iframe" data-size="auto"></div>
-<script src="https://reenio.cz/cs/GIZDQMBY/widget-iframe.js" async defer></script>
+            <script src="https://reenio.cz/cs/GIZDQMBY/widget-iframe.js" async defer></script>
         </div>
 
     </main>
 
-    <footer class="bg-brand-dark text-white py-8 border-t border-white/10 mt-auto">
-        <div class="container mx-auto px-6 text-center">
-            <div class="text-2xl font-bold tracking-tight mb-4">
-                MADER<span class="text-brand-light">BOXING</span>
-            </div>
-            <div class="text-slate-300 text-sm">
-                © 2026 Samuel Mader. Všechna práva vyhrazena.
+    <!-- Patička (sjednocená s index.html a podminky.html) -->
+    <footer class="bg-brand-dark text-white py-12 border-t border-white/10 mt-auto">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-2xl font-bold tracking-tight">
+                    MADER<span class="text-brand-light">BOXING</span>
+                </div>
+                
+                <div class="flex justify-center gap-6">
+                    <a href="podminky.html" class="text-brand-light hover:text-white transition-colors text-sm">Obchodní podmínky</a>
+                    <a href="booking.html" class="text-brand-light hover:text-white transition-colors text-sm">Rezervace</a>
+                </div>
+
+                <div class="text-slate-300 text-sm">
+                    © 2026 Samuel Mader. Všechna práva vyhrazena.
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://www.instagram.com/sam_mader_/" class="hover:text-brand-light transition-colors"><i data-lucide="instagram"
+                            class="w-6 h-6"></i></a>
+                    <a href="mailto:20samuel@seznam.cz" class="hover:text-brand-light transition-colors"><i data-lucide="mail"
+                            class="w-6 h-6"></i></a>
+                </div>
             </div>
         </div>
     </footer>

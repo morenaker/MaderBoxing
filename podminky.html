@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podmínky a storno - Mader Boxing</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#87CEEB', // Sky Blue
+                            dark: '#003459',  // Prussian Blue
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        ::selection {
+            background-color: #87CEEB;
+            color: #003459;
+        }
+        
+        /* Styl pro vnitřní obsah podmínek */
+        .terms-content h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #003459;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .terms-content p, .terms-content ul {
+            color: #475569;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+        .terms-content ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+        .terms-content li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-slate-800 bg-slate-50 flex flex-col min-h-screen">
+
+    <!-- Navigace -->
+    <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-tight text-brand-dark hover:opacity-80 transition-opacity">
+                MADER<span class="text-brand-light">BOXING</span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html#about" class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">O mně</a>
+                <a href="index.html#services" class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Služby</a>
+                <a href="index.html#pricing" class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Ceník</a>
+                <a href="index.html#contact" class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Kontakt</a>
+                
+                <a href="index.html" class="flex items-center gap-2 text-sm font-bold text-brand-dark hover:text-brand-light transition-colors">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Zpět na úvod
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-brand-dark">
+                <i data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-lg md:hidden flex-col items-center py-8 space-y-6 border-t border-slate-100">
+            <a href="index.html" class="text-lg font-medium text-brand-dark">Zpět na hlavní stránku</a>
+            <a href="booking.html" class="text-lg font-medium text-brand-dark">Rezervace</a>
+            <a href="index.html#contact" class="text-lg font-medium text-brand-dark">Kontakt</a>
+        </div>
+    </nav>
+
+    <!-- Hlavní obsah -->
+    <main class="flex-grow container mx-auto px-6 py-12 md:py-20">
+        
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-10 text-center">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-brand-dark mb-4">Obchodní a rezervační podmínky</h1>
+                <p class="text-slate-500">Platné od 1. ledna 2026 pro tréninky Mader Boxing.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100 p-8 md:p-12 terms-content">
+                
+                <h2>1. Úvodní ustanovení</h2>
+                <p>
+                    Tyto obchodní podmínky upravují vzájemná práva a povinnosti mezi trenérem (Samuel Mader) a klientem v rámci poskytování sportovních služeb, konkrétně osobních a skupinových tréninků boxu.
+                </p>
+
+                <h2>2. Rezervace a platba tréninků</h2>
+                <p>
+                    Rezervace tréninků probíhá primárně přes rezervační systém na webových stránkách, případně po předchozí domluvě telefonicky nebo přes sociální sítě (Instagram). Platba za tréninky probíhá dle aktuálního ceníku, standardně v hotovosti na místě po skončení tréninku, případně jinou dohodnutou formou.
+                </p>
+
+                <!-- Zvýrazněný box pro storno podmínky -->
+                <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-lg my-8 shadow-sm">
+                    <div class="flex items-start gap-4">
+                        <div class="p-2 bg-red-500 text-white rounded-full mt-1 shrink-0">
+                            <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-red-900 text-lg mb-2">3. Zrušení tréninku a Storno podmínky</h3>
+                            <p class="text-red-800 leading-relaxed mb-4">
+                                Vzhledem k omezené kapacitě a plánování mého i vašeho času prosím o včasné rušení domluvených termínů.
+                            </p>
+                            <ul class="text-red-800 font-medium space-y-2 mb-0">
+                                <li>Bezplatné zrušení: Trénink je možné bezplatně zrušit <strong>nejpozději 12 hodin před</strong> jeho domluveným začátkem.</li>
+                                <li><strong>Storno poplatek:</strong> V případě, že klient zruší trénink méně než 12 hodin před začátkem, nebo se na trénink bez omluvy vůbec nedostaví, je účtován <strong>storno poplatek ve výši 50 % z ceny tréninku</strong>.</li>
+                            </ul>
+                            <p class="text-red-800 text-sm mt-4 italic">
+                                Tento poplatek bude vyžadován při nejbližším dalším setkání. Děkuji za pochopení a respektování mého času.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>4. Zdravotní způsobilost a bezpečnost</h2>
+                <p>
+                    Klient potvrzuje, že se účastní tréninků dobrovolně a na vlastní nebezpečí. Klient je povinen před zahájením tréninku informovat trenéra o jakýchkoliv zdravotních omezeních, zraněních, nemocech nebo těhotenství, které by mohly ovlivnit jeho schopnost cvičit.
+                </p>
+                <ul>
+                    <li>Trenér nenese odpovědnost za zranění nebo zdravotní komplikace, které vzniknou v důsledku zatajení zdravotního stavu klienta.</li>
+                    <li>Klient je povinen dbát pokynů trenéra a dodržovat zásady bezpečnosti v prostorách tělocvičny.</li>
+                </ul>
+
+                <h2>5. Ochrana osobních údajů (GDPR)</h2>
+                <p>
+                    Osobní údaje klienta (jméno, příjmení, telefonní číslo, e-mail) poskytnuté při rezervaci jsou zpracovávány výhradně za účelem organizace tréninků a komunikace s klientem. Údaje nejsou poskytovány třetím stranám a klient má právo kdykoliv požádat o jejich smazání.
+                </p>
+
+                <h2>6. Závěrečná ustanovení</h2>
+                <p>
+                    Zakoupením služby nebo provedením rezervace klient vyjadřuje souhlas s těmito podmínkami. Trenér si vyhrazuje právo tyto podmínky v budoucnu aktualizovat.
+                </p>
+
+                <div class="mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row gap-4 justify-between items-center">
+                    <p class="text-sm text-slate-500">Máte k podmínkám dotaz? Napište mi.</p>
+                    <a href="index.html#contact" class="px-6 py-2 bg-slate-100 text-brand-dark font-semibold rounded-full hover:bg-slate-200 transition-colors">
+                        Kontaktovat trenéra
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Patička -->
+    <footer class="bg-brand-dark text-white py-8 border-t border-white/10 mt-auto">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-2xl font-bold tracking-tight mb-4">
+                MADER<span class="text-brand-light">BOXING</span>
+            </div>
+            <div class="flex justify-center gap-6 mb-4">
+                <a href="podminky.html" class="text-brand-light hover:text-white transition-colors text-sm">Obchodní podmínky</a>
+                <a href="booking.html" class="text-brand-light hover:text-white transition-colors text-sm">Rezervace</a>
+            </div>
+            <div class="text-slate-300 text-sm">
+                © 2026 Samuel Mader. Všechna práva vyhrazena.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let isMenuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                mobileMenuBtn.innerHTML = '<i data-lucide="x" class="w-7 h-7"></i>';
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+                mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-7 h-7"></i>';
+            }
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
