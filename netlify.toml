@@ -1,0 +1,16 @@
+# Při každém nasazení se z HTML vygeneruje css/style.css (Tailwind).
+# Lokálně stejný příkaz: npx tailwindcss@3.4.17 -c tailwind.config.js -i src/input.css -o css/style.css --minify
+[build]
+  publish = "."
+  command = "npx --yes tailwindcss@3.4.17 -c tailwind.config.js -i src/input.css -o css/style.css --minify"
+
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

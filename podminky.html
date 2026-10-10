@@ -4,88 +4,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Podmínky a storno - Mader Boxing</title>
+    <title>Obchodní a storno podmínky tréninků boxu | Mader Boxing</title>
+    <meta name="description"
+        content="Obchodní, rezervační a storno podmínky soukromých a skupinových tréninků boxu Mader Boxing v Hradci Králové. Bezplatné zrušení nejpozději 12 hodin předem.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://maderboxing.cz/podminky.html">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Open Graph / sdílení na sociálních sítích -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="cs_CZ">
+    <meta property="og:site_name" content="Mader Boxing">
+    <meta property="og:url" content="https://maderboxing.cz/podminky.html">
+    <meta property="og:title" content="Obchodní a storno podmínky tréninků boxu | Mader Boxing">
+    <meta property="og:description"
+        content="Obchodní, rezervační a storno podmínky tréninků boxu Mader Boxing v Hradci Králové.">
+    <meta property="og:image" content="https://maderboxing.cz/img/mader-boxing-og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            light: '#87CEEB', // Sky Blue
-                            dark: '#003459',  // Prussian Blue
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
+    <!-- Ikony -->
+    <meta name="theme-color" content="#003459">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Styly (Tailwind CSS, generováno ze src/input.css) -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Strukturovaná data pro vyhledávače -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Mader Boxing", "item": "https://maderboxing.cz/" },
+            { "@type": "ListItem", "position": 2, "name": "Obchodní a storno podmínky", "item": "https://maderboxing.cz/podminky.html" }
+        ]
+    }
     </script>
-
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <style>
-        ::selection {
-            background-color: #87CEEB;
-            color: #003459;
-        }
-        
-        /* Styl pro vnitřní obsah podmínek */
-        .terms-content h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #003459;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-        .terms-content p, .terms-content ul {
-            color: #475569;
-            line-height: 1.75;
-            margin-bottom: 1rem;
-        }
-        .terms-content ul {
-            list-style-type: disc;
-            padding-left: 1.5rem;
-        }
-        .terms-content li {
-            margin-bottom: 0.5rem;
-        }
-    </style>
 </head>
 
 <body class="font-sans text-slate-800 bg-slate-50 flex flex-col min-h-screen">
 
+    <!-- Sada ikon (Lucide) -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="hidden" aria-hidden="true">
+        <symbol id="i-menu" viewBox="0 0 24 24"><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></symbol>
+        <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></symbol>
+        <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7" /><path d="M19 12H5" /></symbol>
+        <symbol id="i-alert-triangle" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /><path d="M12 9v4" /><path d="M12 17h.01" /></symbol>
+    </svg>
+
     <!-- Navigace -->
-    <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
+    <nav class="bg-white shadow-sm py-4 sticky top-0 z-50" aria-label="Hlavní navigace">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold tracking-tight text-brand-dark hover:opacity-80 transition-opacity">
+            <a href="/" class="text-2xl font-bold tracking-tight text-brand-dark hover:opacity-80 transition-opacity">
                 MADER<span class="text-brand-light">BOXING</span>
             </a>
 
             <div class="hidden md:flex items-center space-x-8">
-                <a href="index.html#about" class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">O mně</a>
-                <a href="index.html#services" class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Služby</a>
-                <a href="index.html#pricing" class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Ceník</a>
-                <a href="index.html#contact" class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Kontakt</a>
+                <a href="/#about" class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">O mně</a>
+                <a href="/#services" class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Služby</a>
+                <a href="/#pricing" class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Ceník</a>
+                <a href="/#contact" class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Kontakt</a>
                 
-                <a href="index.html" class="flex items-center gap-2 text-sm font-bold text-brand-dark hover:text-brand-light transition-colors">
-                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Zpět na úvod
+                <a href="/" class="flex items-center gap-2 text-sm font-bold text-brand-dark hover:text-brand-light transition-colors">
+                    <svg class="icon w-4 h-4" aria-hidden="true"><use href="#i-arrow-left" /></svg> Zpět na úvod
                 </a>
             </div>
 
-            <button id="mobile-menu-btn" class="md:hidden text-brand-dark">
-                <i data-lucide="menu" class="w-7 h-7"></i>
+            <button id="mobile-menu-btn" class="md:hidden text-brand-dark" type="button" aria-label="Otevřít menu"
+                aria-expanded="false" aria-controls="mobile-menu">
+                <svg class="icon w-7 h-7" aria-hidden="true"><use href="#i-menu" /></svg>
             </button>
         </div>
 
         <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-lg md:hidden flex-col items-center py-8 space-y-6 border-t border-slate-100">
-            <a href="index.html" class="text-lg font-medium text-brand-dark">Zpět na hlavní stránku</a>
+            <a href="/" class="text-lg font-medium text-brand-dark">Zpět na hlavní stránku</a>
             <a href="booking.html" class="text-lg font-medium text-brand-dark">Rezervace</a>
-            <a href="index.html#contact" class="text-lg font-medium text-brand-dark">Kontakt</a>
+            <a href="/#contact" class="text-lg font-medium text-brand-dark">Kontakt</a>
         </div>
     </nav>
 
@@ -114,10 +111,10 @@
                 <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-lg my-8 shadow-sm">
                     <div class="flex items-start gap-4">
                         <div class="p-2 bg-red-500 text-white rounded-full mt-1 shrink-0">
-                            <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                            <svg class="icon w-5 h-5" aria-hidden="true"><use href="#i-alert-triangle" /></svg>
                         </div>
                         <div>
-                            <h3 class="font-bold text-red-900 text-lg mb-2">3. Zrušení tréninku a Storno podmínky</h3>
+                            <h2 class="!font-bold !text-red-900 !text-lg !mt-0 !mb-2">3. Zrušení tréninku a storno podmínky</h2>
                             <p class="text-red-800 leading-relaxed mb-4">
                                 Vzhledem k omezené kapacitě a plánování mého i vašeho času prosím o včasné rušení domluvených termínů.
                             </p>
@@ -153,7 +150,7 @@
 
                 <div class="mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row gap-4 justify-between items-center">
                     <p class="text-sm text-slate-500">Máte k podmínkám dotaz? Napište mi.</p>
-                    <a href="index.html#contact" class="px-6 py-2 bg-slate-100 text-brand-dark font-semibold rounded-full hover:bg-slate-200 transition-colors">
+                    <a href="/#contact" class="px-6 py-2 bg-slate-100 text-brand-dark font-semibold rounded-full hover:bg-slate-200 transition-colors">
                         Kontaktovat trenéra
                     </a>
                 </div>
@@ -180,25 +177,17 @@
     </footer>
 
     <script>
-        lucide.createIcons();
-
         // Mobile Menu Logic
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        let isMenuOpen = false;
 
         mobileMenuBtn.addEventListener('click', () => {
-            isMenuOpen = !isMenuOpen;
-            if (isMenuOpen) {
-                mobileMenu.classList.remove('hidden');
-                mobileMenu.classList.add('flex');
-                mobileMenuBtn.innerHTML = '<i data-lucide="x" class="w-7 h-7"></i>';
-            } else {
-                mobileMenu.classList.add('hidden');
-                mobileMenu.classList.remove('flex');
-                mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-7 h-7"></i>';
-            }
-            lucide.createIcons();
+            const open = mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden', !open);
+            mobileMenu.classList.toggle('flex', open);
+            mobileMenuBtn.querySelector('use').setAttribute('href', open ? '#i-x' : '#i-menu');
+            mobileMenuBtn.setAttribute('aria-expanded', open);
+            mobileMenuBtn.setAttribute('aria-label', open ? 'Zavřít menu' : 'Otevřít menu');
         });
     </script>
 </body>
