@@ -56,7 +56,9 @@
                 "name": "Mader Boxing",
                 "description": "Soukromé a skupinové lekce boxu v Hradci Králové",
                 "inLanguage": "cs",
-                "publisher": { "@id": "https://maderboxing.cz/#business" }
+                "publisher": {
+                    "@id": "https://maderboxing.cz/#business"
+                }
             },
             {
                 "@type": "SportsActivityLocation",
@@ -93,15 +95,19 @@
                     "@type": "City",
                     "name": "Hradec Králové"
                 },
-                "founder": { "@id": "https://maderboxing.cz/#samuel-mader" },
-                "containedInPlace": { "@id": "https://maderboxing.cz/#box-club" },
+                "founder": {
+                    "@id": "https://maderboxing.cz/#samuel-mader"
+                },
+                "containedInPlace": {
+                    "@id": "https://maderboxing.cz/#box-club"
+                },
                 "sameAs": [
                     "https://www.instagram.com/sam_mader_/"
                 ],
                 "potentialAction": {
                     "@type": "ReserveAction",
                     "name": "Rezervovat lekci boxu",
-                    "target": "https://maderboxing.cz/#zacit"
+                    "target": "https://maderboxing.cz/zacit-trenovat.html"
                 },
                 "hasOfferCatalog": {
                     "@type": "OfferCatalog",
@@ -136,7 +142,7 @@
                             "name": "Dárkový poukaz na 1 trénink boxu",
                             "price": "700",
                             "priceCurrency": "CZK",
-                            "url": "https://maderboxing.cz/#poukazy",
+                            "url": "https://maderboxing.cz/poukazy.html",
                             "itemOffered": {
                                 "@type": "Service",
                                 "name": "Dárkový poukaz na 1 individuální trénink boxu (60 minut)"
@@ -147,7 +153,7 @@
                             "name": "Dárkový poukaz na 5 tréninků boxu",
                             "price": "3300",
                             "priceCurrency": "CZK",
-                            "url": "https://maderboxing.cz/#poukazy",
+                            "url": "https://maderboxing.cz/poukazy.html",
                             "itemOffered": {
                                 "@type": "Service",
                                 "name": "Dárkový poukaz na 5 individuálních tréninků boxu (5 × 60 minut)"
@@ -165,10 +171,18 @@
                 "url": "https://maderboxing.cz/#about",
                 "image": "https://maderboxing.cz/img/samuel-mader-trener-boxu-hradec-kralove-1120.webp",
                 "award": "Mistr České republiky v boxu",
-                "knowsAbout": ["Box", "Trénink boxu", "Kondiční příprava"],
+                "knowsAbout": [
+                    "Box",
+                    "Trénink boxu",
+                    "Kondiční příprava"
+                ],
                 "worksFor": [
-                    { "@id": "https://maderboxing.cz/#business" },
-                    { "@id": "https://maderboxing.cz/#box-club" }
+                    {
+                        "@id": "https://maderboxing.cz/#business"
+                    },
+                    {
+                        "@id": "https://maderboxing.cz/#box-club"
+                    }
                 ],
                 "sameAs": [
                     "https://www.instagram.com/sam_mader_/",
@@ -188,7 +202,9 @@
                     "postalCode": "500 03",
                     "addressCountry": "CZ"
                 },
-                "employee": { "@id": "https://maderboxing.cz/#samuel-mader" }
+                "employee": {
+                    "@id": "https://maderboxing.cz/#samuel-mader"
+                }
             },
             {
                 "@type": "FAQPage",
@@ -220,14 +236,6 @@
                     },
                     {
                         "@type": "Question",
-                        "name": "Kde tréninky boxu probíhají?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Trénujeme v plně vybaveném zázemí BOX CLUB Hradec Králové na adrese Československé armády 216/41, 500 03 Hradec Králové."
-                        }
-                    },
-                    {
-                        "@type": "Question",
                         "name": "Jak se přihlásím na trénink boxu?",
                         "acceptedAnswer": {
                             "@type": "Answer",
@@ -247,15 +255,7 @@
                         "name": "Kde v Hradci Králové trénujete?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Jsem trenérem v BOX CLUB Hradec Králové a všechny tréninky probíhají tam – na adrese Československé armády 216/41, 500 03 Hradec Králové."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Prodáváte dárkové poukazy na trénink boxu?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Ano. Dárkový poukaz je na 1 trénink (700 Kč) nebo na 5 tréninků (3 300 Kč) a platí 6 měsíců. Objednáte ho formulářem na webu, telefonicky nebo přes Instagram, zaplatíte převodem na účet a poukaz vám pošlu e-mailem jako PDF k vytištění."
+                            "text": "Jsem trenérem v BOX CLUB Hradec Králové a všechny tréninky probíhají tam – v Gayerových kasárnách na adrese Československé armády 216/41, 500 03 Hradec Králové."
                         }
                     },
                     {
@@ -302,25 +302,18 @@
         <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-6"
             aria-label="Hlavní navigace">
             <div class="container mx-auto px-6 flex justify-between items-center">
-                <a href="/" class="text-2xl font-bold tracking-tight text-brand-dark"
+                <a href="/" class="text-2xl font-bold tracking-tight text-brand-dark hover:opacity-80 transition-opacity"
                     aria-label="Mader Boxing – úvodní stránka">
                     MADER<span class="text-brand-light">BOXING</span>
                 </a>
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#about"
-                        class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">O
-                        mně</a>
-                    <a href="#services"
-                        class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Služby</a>
-                    <a href="#pricing"
-                        class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Ceník</a>
-                    <a href="#poukazy"
-                        class="hidden lg:inline text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Poukazy</a>
-                    <a href="#contact"
-                        class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Kontakt</a>
-                    <a href="#zacit"
+                    <a href="/#about" class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">O mně</a>
+                    <a href="/#pricing" class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Ceník</a>
+                    <a href="/poukazy.html" class="hidden lg:inline text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Poukazy</a>
+                    <a href="/#contact" class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Kontakt</a>
+                    <a href="/zacit-trenovat.html"
                         class="px-6 py-2 bg-brand-dark text-white font-semibold rounded-full hover:bg-[#004e8a] transition-colors shadow-lg shadow-blue-900/10">
                         Rezervovat lekci
                     </a>
@@ -336,14 +329,12 @@
             <!-- Mobile Menu Overlay -->
             <div id="mobile-menu"
                 class="hidden absolute top-full left-0 w-full bg-white shadow-lg md:hidden flex-col items-center py-8 space-y-6 animate-fade-in">
-                <a href="#about" class="mobile-link text-lg font-medium text-brand-dark">O mně</a>
-                <a href="#services" class="mobile-link text-lg font-medium text-brand-dark">Služby</a>
-                <a href="#pricing" class="mobile-link text-lg font-medium text-brand-dark">Ceník</a>
-                <a href="#poukazy" class="mobile-link text-lg font-medium text-brand-dark">Dárkové poukazy</a>
-                <a href="#faq" class="mobile-link text-lg font-medium text-brand-dark">Časté dotazy</a>
-                <a href="#zacit" class="mobile-link text-lg font-medium text-brand-dark">Chci začít trénovat</a>
-                <a href="#contact" class="mobile-link text-lg font-medium text-brand-dark">Kontakt</a>
-                <a href="#zacit"
+                <a href="/#about" class="mobile-link text-lg font-medium text-brand-dark">O mně</a>
+                <a href="/#pricing" class="mobile-link text-lg font-medium text-brand-dark">Ceník</a>
+                <a href="/poukazy.html" class="mobile-link text-lg font-medium text-brand-dark">Dárkové poukazy</a>
+                <a href="/#faq" class="mobile-link text-lg font-medium text-brand-dark">Časté dotazy</a>
+                <a href="/#contact" class="mobile-link text-lg font-medium text-brand-dark">Kontakt</a>
+                <a href="/zacit-trenovat.html"
                     class="mobile-link px-8 py-3 bg-brand-dark text-white font-semibold rounded-full w-3/4 text-center">
                     Rezervovat lekci
                 </a>
@@ -385,7 +376,7 @@
                     </p>
 
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#zacit"
+                        <a href="/zacit-trenovat.html"
                             class="px-8 py-4 bg-brand-dark text-white font-bold rounded-lg hover:bg-[#004e8a] transition-all transform hover:-translate-y-1 shadow-xl shadow-blue-900/20 flex items-center justify-center gap-2">
                             Začít trénovat <svg class="icon w-5 h-5" aria-hidden="true"><use href="#i-arrow-right" /></svg>
                         </a>
@@ -603,55 +594,41 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Pro koho Section -->
-        <section id="pro-koho" class="py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center max-w-2xl mx-auto mb-16">
-                    <p class="text-sm font-bold tracking-widest text-brand-light uppercase mb-2">Pro koho</p>
-                    <h2 class="text-4xl font-bold text-brand-dark mb-4">Box pro začátečníky i pokročilé</h2>
-                    <p class="text-slate-600">
+                <div class="mt-20">
+                    <h2 class="text-3xl font-bold text-brand-dark text-center mb-3">Box pro začátečníky i pokročilé</h2>
+                    <p class="text-slate-600 text-center max-w-2xl mx-auto mb-10">
                         Nezáleží na tom, jestli jste rukavice nikdy neměli na rukou, nebo se chystáte na zápas.
-                        Každý trénink boxu stavím podle vaší úrovně a toho, čeho chcete dosáhnout.
-                        Stačí <a href="#zacit" class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">vyplnit krátký formulář</a> a domluvíme se.
+                        Každý trénink stavím podle vaší úrovně a cílů.
                     </p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="p-8 rounded-2xl border border-slate-100 bg-slate-50">
-                        <div
-                            class="w-12 h-12 bg-brand-light/20 rounded-xl flex items-center justify-center text-brand-dark mb-6">
-                            <svg class="icon w-6 h-6" aria-hidden="true"><use href="#i-user" /></svg>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="flex gap-4 p-6 bg-white rounded-2xl border border-slate-100">
+                            <div class="w-10 h-10 shrink-0 bg-brand-light/20 rounded-lg flex items-center justify-center text-brand-dark">
+                                <svg class="icon w-5 h-5" aria-hidden="true"><use href="#i-user" /></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-brand-dark mb-1">Začátečníci</h3>
+                                <p class="text-sm text-slate-600">Začneme od úplných základů – postoj, práce nohou a správná technika úderů. Tempo přizpůsobím vám, takže se box naučíte bezpečně a bez zlozvyků.</p>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-brand-dark mb-4">Začátečníci</h3>
-                        <p class="text-slate-600">
-                            Začneme od úplných základů – postoj, práce nohou a správná technika úderů. Tempo
-                            přizpůsobím vám, takže se box naučíte bezpečně a bez zlozvyků.
-                        </p>
-                    </div>
-                    <div class="p-8 rounded-2xl border border-slate-100 bg-slate-50">
-                        <div
-                            class="w-12 h-12 bg-brand-light/20 rounded-xl flex items-center justify-center text-brand-dark mb-6">
-                            <svg class="icon w-6 h-6" aria-hidden="true"><use href="#i-clock" /></svg>
+                        <div class="flex gap-4 p-6 bg-white rounded-2xl border border-slate-100">
+                            <div class="w-10 h-10 shrink-0 bg-brand-light/20 rounded-lg flex items-center justify-center text-brand-dark">
+                                <svg class="icon w-5 h-5" aria-hidden="true"><use href="#i-clock" /></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-brand-dark mb-1">Kondice a odreagování</h3>
+                                <p class="text-sm text-slate-600">Hledáte efektivní pohyb po práci? Kondiční box spaluje tuky, zlepšuje fyzičku a spolehlivě vyčistí hlavu od stresu.</p>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-brand-dark mb-4">Kondice a odreagování</h3>
-                        <p class="text-slate-600">
-                            Hledáte efektivní pohyb po práci? Kondiční box spaluje tuky, zlepšuje fyzičku a spolehlivě
-                            vyčistí hlavu od stresu.
-                        </p>
-                    </div>
-                    <div class="p-8 rounded-2xl border border-slate-100 bg-slate-50">
-                        <div
-                            class="w-12 h-12 bg-brand-light/20 rounded-xl flex items-center justify-center text-brand-dark mb-6">
-                            <svg class="icon w-6 h-6" aria-hidden="true"><use href="#i-award" /></svg>
+                        <div class="flex gap-4 p-6 bg-white rounded-2xl border border-slate-100">
+                            <div class="w-10 h-10 shrink-0 bg-brand-light/20 rounded-lg flex items-center justify-center text-brand-dark">
+                                <svg class="icon w-5 h-5" aria-hidden="true"><use href="#i-award" /></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-brand-dark mb-1">Sportovci a závodníci</h3>
+                                <p class="text-sm text-slate-600">Máte ambici závodit nebo chcete posunout svůj výkon? Zaměříme se na detaily techniky, obranu a nácviky ve dvojicích.</p>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-brand-dark mb-4">Sportovci a závodníci</h3>
-                        <p class="text-slate-600">
-                            Máte ambici závodit nebo chcete posunout svůj výkon? Zaměříme se na detaily techniky,
-                            obranu a nácviky ve dvojicích.
-                        </p>
                     </div>
                 </div>
             </div>
@@ -711,7 +688,7 @@
                             </li>
                         </ul>
 
-                        <a href="#zacit" data-typ="Individuální"
+                        <a href="/zacit-trenovat.html?typ=individualni"
                             class="block w-full text-center py-3 bg-brand-dark text-white font-bold rounded-lg hover:bg-[#004e8a] transition-colors group-hover:shadow-lg">
                             Rezervovat individuálně
                         </a>
@@ -751,7 +728,7 @@
                             </li>
                         </ul>
 
-                        <a href="#zacit" data-typ="Ve dvojici / skupině"
+                        <a href="/zacit-trenovat.html?typ=skupina"
                             class="block w-full text-center py-3 bg-white border-2 border-brand-dark text-brand-dark font-bold rounded-lg hover:bg-[#f0f9ff] transition-colors">
                             Rezervovat pro skupinu
                         </a>
@@ -772,202 +749,27 @@
             </div>
         </section>
 
-        <!-- Vouchers Section -->
-        <section id="poukazy" class="py-24 bg-[#f0f9ff]">
-            <div class="container mx-auto px-6">
-                <div class="text-center max-w-2xl mx-auto mb-16">
-                    <p class="text-sm font-bold tracking-widest text-brand-light uppercase mb-2">Dárkové poukazy</p>
-                    <h2 class="text-4xl font-bold text-brand-dark mb-4">Dárkový poukaz na trénink boxu</h2>
-                    <p class="text-slate-600">
-                        Hledáte dárek, který nebude ležet v šuplíku? Darujte soukromý trénink boxu v Hradci Králové
-                        – k narozeninám, k Vánocům nebo jen tak.
-                    </p>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
-                    <!-- Voucher 1 -->
-                    <div class="bg-white p-8 rounded-2xl shadow-xl border border-slate-100 relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-full h-2 bg-brand-light"></div>
-                        <div class="flex justify-between items-start mb-6">
-                            <div>
-                                <h3 class="text-xl font-bold text-brand-dark mb-1">Poukaz na 1 trénink</h3>
-                                <p class="text-sm text-slate-500">Ideální na vyzkoušení</p>
-                            </div>
-                            <div class="p-3 bg-[#f0f9ff] rounded-lg text-brand-dark">
-                                <svg class="icon w-6 h-6" aria-hidden="true"><use href="#i-gift" /></svg>
-                            </div>
+        <!-- Vouchers Teaser -->
+        <section id="poukazy" class="py-16 bg-brand-dark text-white relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-72 h-72 bg-brand-light opacity-10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+            <div class="container mx-auto px-6 relative">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="flex items-start gap-5 max-w-2xl">
+                        <div class="w-14 h-14 shrink-0 bg-brand-light rounded-2xl flex items-center justify-center text-brand-dark">
+                            <svg class="icon w-7 h-7" aria-hidden="true"><use href="#i-gift" /></svg>
                         </div>
-                        <div class="mb-6">
-                            <span class="text-4xl font-bold text-brand-dark">700&nbsp;Kč</span>
-                        </div>
-                        <ul class="space-y-4">
-                            <li class="flex items-center gap-3 text-slate-700">
-                                <svg class="icon text-brand-light w-5 h-5" aria-hidden="true"><use href="#i-check-circle" /></svg>
-                                <span>1 individuální lekce boxu (60 minut)</span>
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700">
-                                <svg class="icon text-brand-light w-5 h-5" aria-hidden="true"><use href="#i-check-circle" /></svg>
-                                <span>Platnost 6 měsíců</span>
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700">
-                                <svg class="icon text-brand-light w-5 h-5" aria-hidden="true"><use href="#i-check-circle" /></svg>
-                                <span>Poukaz jako PDF e-mailem</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Voucher 5 -->
-                    <div class="bg-brand-dark p-8 rounded-2xl shadow-2xl text-white relative overflow-hidden">
-                        <div
-                            class="absolute top-0 right-0 w-32 h-32 bg-brand-light opacity-10 rounded-full blur-2xl -mr-16 -mt-16">
-                        </div>
-                        <div class="flex justify-between items-start mb-6">
-                            <div>
-                                <h3 class="text-xl font-bold text-white mb-1">Poukaz na 5 tréninků</h3>
-                                <p class="text-sm text-slate-300">Pro ty, kdo to s boxem myslí vážně</p>
-                            </div>
-                            <div class="p-3 bg-brand-light rounded-lg text-brand-dark">
-                                <svg class="icon w-6 h-6" aria-hidden="true"><use href="#i-gift" /></svg>
-                            </div>
-                        </div>
-                        <div class="mb-6">
-                            <span class="text-4xl font-bold text-white">3&nbsp;300&nbsp;Kč</span>
-                        </div>
-                        <ul class="space-y-4">
-                            <li class="flex items-center gap-3 text-slate-200">
-                                <svg class="icon text-brand-light w-5 h-5" aria-hidden="true"><use href="#i-check-circle" /></svg>
-                                <span>5 individuálních lekcí boxu (5 × 60 minut)</span>
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-200">
-                                <svg class="icon text-brand-light w-5 h-5" aria-hidden="true"><use href="#i-check-circle" /></svg>
-                                <span>Platnost 6 měsíců</span>
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-200">
-                                <svg class="icon text-brand-light w-5 h-5" aria-hidden="true"><use href="#i-check-circle" /></svg>
-                                <span>Poukaz jako PDF e-mailem</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto items-start">
-                    <!-- How it works -->
-                    <div>
-                        <h3 class="text-2xl font-bold text-brand-dark mb-6">Jak to funguje</h3>
-                        <ol class="space-y-6">
-                            <li class="flex gap-4">
-                                <span
-                                    class="w-10 h-10 shrink-0 rounded-full bg-brand-dark text-white font-bold flex items-center justify-center">1</span>
-                                <div>
-                                    <p class="font-bold text-brand-dark">Objednáte poukaz</p>
-                                    <p class="text-slate-600">Vyplňte krátký formulář, nebo mi zavolejte na
-                                        <a href="tel:+420724396877"
-                                            class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">+420&nbsp;724&nbsp;396&nbsp;877</a>
-                                        či napište na <a href="https://www.instagram.com/sam_mader_/" target="_blank"
-                                            rel="noopener noreferrer"
-                                            class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">Instagram</a>.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="flex gap-4">
-                                <span
-                                    class="w-10 h-10 shrink-0 rounded-full bg-brand-dark text-white font-bold flex items-center justify-center">2</span>
-                                <div>
-                                    <p class="font-bold text-brand-dark">Zaplatíte</p>
-                                    <p class="text-slate-600">Obratem vám pošlu platební údaje a zaplatíte převodem na
-                                        účet.</p>
-                                </div>
-                            </li>
-                            <li class="flex gap-4">
-                                <span
-                                    class="w-10 h-10 shrink-0 rounded-full bg-brand-dark text-white font-bold flex items-center justify-center">3</span>
-                                <div>
-                                    <p class="font-bold text-brand-dark">Dostanete poukaz</p>
-                                    <p class="text-slate-600">Po zaplacení vám ho pošlu e-mailem jako PDF k vytištění.
-                                        Obdarovaný si pak termín domluví telefonicky či přes Instagram.</p>
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
-
-                    <!-- Order form (Netlify Forms) -->
-                    <form name="poukaz" method="POST" action="/dekujeme.html" data-netlify="true"
-                        netlify-honeypot="bot-field"
-                        class="bg-white p-8 rounded-2xl shadow-xl border border-slate-100 space-y-5">
-                        <input type="hidden" name="form-name" value="poukaz">
-                        <p class="hidden">
-                            <label>Toto pole nevyplňujte: <input name="bot-field"></label>
-                        </p>
-
-                        <h3 class="text-2xl font-bold text-brand-dark">Objednat poukaz</h3>
-
-                        <fieldset>
-                            <legend class="block text-sm font-semibold text-slate-700 mb-2">Poukaz</legend>
-                            <div class="grid grid-cols-2 gap-3">
-                                <label
-                                    class="flex items-center gap-2 p-3 border border-slate-200 rounded-lg cursor-pointer has-[:checked]:border-brand-dark has-[:checked]:bg-[#f0f9ff]">
-                                    <input type="radio" name="poukaz" value="1 trénink (700 Kč)" checked
-                                        class="accent-[#003459]">
-                                    <span class="text-sm text-slate-700">1 trénink<br><strong>700&nbsp;Kč</strong></span>
-                                </label>
-                                <label
-                                    class="flex items-center gap-2 p-3 border border-slate-200 rounded-lg cursor-pointer has-[:checked]:border-brand-dark has-[:checked]:bg-[#f0f9ff]">
-                                    <input type="radio" name="poukaz" value="5 tréninků (3 300 Kč)"
-                                        class="accent-[#003459]">
-                                    <span class="text-sm text-slate-700">5 tréninků<br><strong>3&nbsp;300&nbsp;Kč</strong></span>
-                                </label>
-                            </div>
-                        </fieldset>
-
                         <div>
-                            <label for="v-jmeno" class="block text-sm font-semibold text-slate-700 mb-1">Vaše jméno a
-                                příjmení</label>
-                            <input id="v-jmeno" name="jmeno" type="text" required autocomplete="name"
-                                class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark">
+                            <h2 class="text-2xl md:text-3xl font-bold mb-2">Darujte trénink boxu</h2>
+                            <p class="text-slate-300">
+                                Dárkový poukaz na 1 trénink za 700&nbsp;Kč nebo na 5 tréninků za 3&nbsp;300&nbsp;Kč.
+                                Platí 6 měsíců a přijde e-mailem jako PDF k vytištění.
+                            </p>
                         </div>
-
-                        <div class="grid sm:grid-cols-2 gap-4">
-                            <div>
-                                <label for="v-email" class="block text-sm font-semibold text-slate-700 mb-1">E-mail</label>
-                                <input id="v-email" name="email" type="email" required autocomplete="email"
-                                    class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark">
-                            </div>
-                            <div>
-                                <label for="v-telefon"
-                                    class="block text-sm font-semibold text-slate-700 mb-1">Telefon</label>
-                                <input id="v-telefon" name="telefon" type="tel" autocomplete="tel"
-                                    class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="v-pro" class="block text-sm font-semibold text-slate-700 mb-1">Pro koho je poukaz
-                                <span class="font-normal text-slate-500">(jméno na poukaz, nepovinné)</span></label>
-                            <input id="v-pro" name="pro_koho" type="text"
-                                class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark">
-                        </div>
-
-                        <div>
-                            <label for="v-poznamka" class="block text-sm font-semibold text-slate-700 mb-1">Poznámka
-                                <span class="font-normal text-slate-500">(nepovinné)</span></label>
-                            <textarea id="v-poznamka" name="poznamka" rows="3"
-                                class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark"></textarea>
-                        </div>
-
-                        <label class="flex items-start gap-2 text-sm text-slate-600 cursor-pointer">
-                            <input type="checkbox" name="souhlas" value="ano" required class="mt-1 accent-[#003459]">
-                            <span>Souhlasím s <a href="podminky.html" target="_blank"
-                                    class="text-brand-dark font-semibold underline hover:text-brand-light">obchodními
-                                    a storno podmínkami</a> a se zpracováním údajů pro vyřízení objednávky.</span>
-                        </label>
-                        <button type="submit"
-                            class="w-full flex items-center justify-center gap-2 py-4 bg-brand-dark text-white font-bold rounded-lg hover:bg-[#004e8a] transition-colors shadow-lg shadow-blue-900/10">
-                            Objednat poukaz <svg class="icon w-5 h-5" aria-hidden="true"><use href="#i-send" /></svg>
-                        </button>
-                        <p class="text-xs text-slate-500">
-                            Objednávka je nezávazná, obratem vám pošlu platební údaje.
-                        </p>
-                    </form>
+                    </div>
+                    <a href="/poukazy.html"
+                        class="w-full md:w-auto shrink-0 px-8 py-4 bg-white text-brand-dark font-bold rounded-lg hover:bg-[#f0f9ff] transition-colors text-center">
+                        Vybrat poukaz
+                    </a>
                 </div>
             </div>
         </section>
@@ -1021,23 +823,11 @@
                     <details class="group bg-white rounded-xl border border-slate-100 shadow-sm">
                         <summary
                             class="flex items-center justify-between gap-4 cursor-pointer list-none p-6 text-brand-dark">
-                            <h3 class="text-lg font-bold">Kde tréninky boxu probíhají?</h3>
-                            <svg class="icon w-5 h-5 shrink-0 transition-transform group-open:rotate-90" aria-hidden="true"><use href="#i-chevron-right" /></svg>
-                        </summary>
-                        <p class="px-6 pb-6 text-slate-600 leading-relaxed">
-                            Trénujeme v plně vybaveném zázemí BOX CLUB Hradec Králové na adrese Československé armády
-                            216/41, 500 03 Hradec Králové.
-                        </p>
-                    </details>
-
-                    <details class="group bg-white rounded-xl border border-slate-100 shadow-sm">
-                        <summary
-                            class="flex items-center justify-between gap-4 cursor-pointer list-none p-6 text-brand-dark">
                             <h3 class="text-lg font-bold">Jak se přihlásím na trénink boxu?</h3>
                             <svg class="icon w-5 h-5 shrink-0 transition-transform group-open:rotate-90" aria-hidden="true"><use href="#i-chevron-right" /></svg>
                         </summary>
                         <p class="px-6 pb-6 text-slate-600 leading-relaxed">
-                            Vyplňte <a href="#zacit" class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">formulář Chci začít trénovat</a>, zavolejte na
+                            Vyplňte <a href="/zacit-trenovat.html" class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">formulář Chci začít trénovat</a>, zavolejte na
                             <a href="tel:+420724396877" class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">+420 724 396 877</a> nebo mi napište na Instagram.
                             Ozvu se vám a domluvíme termín, který vám bude sedět.
                         </p>
@@ -1066,21 +856,8 @@
                             <svg class="icon w-5 h-5 shrink-0 transition-transform group-open:rotate-90" aria-hidden="true"><use href="#i-chevron-right" /></svg>
                         </summary>
                         <p class="px-6 pb-6 text-slate-600 leading-relaxed">
-                            Jsem trenérem v BOX CLUB Hradec Králové a všechny tréninky probíhají tam – na adrese Československé
-                            armády 216/41, 500 03 Hradec Králové.
-                        </p>
-                    </details>
-
-                    <details class="group bg-white rounded-xl border border-slate-100 shadow-sm">
-                        <summary
-                            class="flex items-center justify-between gap-4 cursor-pointer list-none p-6 text-brand-dark">
-                            <h3 class="text-lg font-bold">Prodáváte dárkové poukazy na trénink boxu?</h3>
-                            <svg class="icon w-5 h-5 shrink-0 transition-transform group-open:rotate-90" aria-hidden="true"><use href="#i-chevron-right" /></svg>
-                        </summary>
-                        <p class="px-6 pb-6 text-slate-600 leading-relaxed">
-                            Ano. Dárkový poukaz je na 1 trénink (700&nbsp;Kč) nebo na 5 tréninků (3&nbsp;300&nbsp;Kč) a platí 6 měsíců.
-                            Objednáte ho <a href="#poukazy" class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">formulářem na webu</a>, telefonicky nebo přes
-                            Instagram, zaplatíte převodem na účet a poukaz vám pošlu e-mailem jako PDF k vytištění.
+                            Jsem trenérem v BOX CLUB Hradec Králové a všechny tréninky probíhají tam – v Gayerových
+                            kasárnách na adrese Československé armády 216/41, 500 03 Hradec Králové.
                         </p>
                     </details>
 
@@ -1099,148 +876,26 @@
             </div>
         </section>
 
-        <!-- Start Training Section -->
-        <section id="zacit" class="py-24 bg-white">
+        <!-- CTA Section -->
+        <section class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div
-                    class="bg-[#f0f9ff] rounded-3xl p-6 md:p-12 border border-brand-light/20 grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-                    <div>
-                        <p class="text-sm font-bold tracking-widest text-brand-light uppercase mb-2">Začněte trénovat</p>
+                    class="bg-[#f0f9ff] rounded-3xl p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10 border border-brand-light/20">
+                    <div class="md:w-2/3">
                         <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">Připraveni vstoupit do ringu?</h2>
-                        <p class="text-lg text-slate-600 mb-8">
-                            Ať už jste manažer hledající odreagování, nebo sportovec s ambicí závodit – začněte s boxem
-                            v Hradci Králové ještě dnes. Vyplňte krátký formulář a ozvu se vám, nebo mi rovnou napište
-                            či zavolejte.
-                        </p>
-
-                        <ul class="space-y-4 mb-8">
-                            <li>
-                                <a href="https://www.instagram.com/sam_mader_/" target="_blank" rel="noopener noreferrer"
-                                    class="flex items-center gap-4 p-4 bg-white rounded-xl border border-slate-100 hover:border-brand-light transition-colors">
-                                    <span class="p-3 bg-brand-dark text-white rounded-lg"><svg class="icon w-5 h-5" aria-hidden="true"><use href="#i-instagram" /></svg></span>
-                                    <span><span class="block text-sm text-slate-500">Instagram</span><span
-                                            class="font-bold text-brand-dark">@sam_mader_</span></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tel:+420724396877"
-                                    class="flex items-center gap-4 p-4 bg-white rounded-xl border border-slate-100 hover:border-brand-light transition-colors">
-                                    <span class="p-3 bg-brand-dark text-white rounded-lg"><svg class="icon w-5 h-5" aria-hidden="true"><use href="#i-phone" /></svg></span>
-                                    <span><span class="block text-sm text-slate-500">Telefon</span><span
-                                            class="font-bold text-brand-dark">+420&nbsp;724&nbsp;396&nbsp;877</span></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="mailto:20samuel@seznam.cz"
-                                    class="flex items-center gap-4 p-4 bg-white rounded-xl border border-slate-100 hover:border-brand-light transition-colors">
-                                    <span class="p-3 bg-brand-dark text-white rounded-lg"><svg class="icon w-5 h-5" aria-hidden="true"><use href="#i-mail" /></svg></span>
-                                    <span><span class="block text-sm text-slate-500">E-mail</span><span
-                                            class="font-bold text-brand-dark break-all">20samuel@seznam.cz</span></span>
-                                </a>
-                            </li>
-                        </ul>
-
-                        <p class="text-sm text-slate-600">
-                            Občas vypisuji i volné <a href="booking.html" class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">last minute termíny</a>,
-                            které si můžete rovnou zarezervovat online.
+                        <p class="text-lg text-slate-600">
+                            Ať už jste manažer hledající odreagování, nebo sportovec s ambicí závodit. Začněte svou
+                            transformaci s boxem v Hradci Králové ještě dnes.
                         </p>
                     </div>
-
-                    <!-- Training interest form (Netlify Forms) -->
-                    <form name="trenink" method="POST" action="/dekujeme-trenink.html" data-netlify="true"
-                        netlify-honeypot="bot-field"
-                        class="bg-white p-6 md:p-8 rounded-2xl shadow-xl border border-slate-100 space-y-5">
-                        <input type="hidden" name="form-name" value="trenink">
-                        <p class="hidden">
-                            <label>Toto pole nevyplňujte: <input name="bot-field"></label>
-                        </p>
-
-                        <h3 class="text-2xl font-bold text-brand-dark">Chci začít trénovat</h3>
-
-                        <div>
-                            <label for="t-jmeno" class="block text-sm font-semibold text-slate-700 mb-1">Jméno a
-                                příjmení</label>
-                            <input id="t-jmeno" name="jmeno" type="text" required autocomplete="name"
-                                class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark">
-                        </div>
-
-                        <div class="grid sm:grid-cols-2 gap-4">
-                            <div>
-                                <label for="t-email" class="block text-sm font-semibold text-slate-700 mb-1">E-mail</label>
-                                <input id="t-email" name="email" type="email" required autocomplete="email"
-                                    class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark">
-                            </div>
-                            <div>
-                                <label for="t-telefon"
-                                    class="block text-sm font-semibold text-slate-700 mb-1">Telefon</label>
-                                <input id="t-telefon" name="telefon" type="tel" autocomplete="tel"
-                                    class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark">
-                            </div>
-                        </div>
-
-                        <fieldset>
-                            <legend class="block text-sm font-semibold text-slate-700 mb-2">O jaký trénink máte zájem?
-                            </legend>
-                            <div class="grid sm:grid-cols-3 gap-3">
-                                <label
-                                    class="flex items-center gap-2 p-3 border border-slate-200 rounded-lg cursor-pointer has-[:checked]:border-brand-dark has-[:checked]:bg-[#f0f9ff]">
-                                    <input type="radio" name="typ" value="Individuální" checked class="accent-[#003459]">
-                                    <span class="text-sm text-slate-700">Individuální</span>
-                                </label>
-                                <label
-                                    class="flex items-center gap-2 p-3 border border-slate-200 rounded-lg cursor-pointer has-[:checked]:border-brand-dark has-[:checked]:bg-[#f0f9ff]">
-                                    <input type="radio" name="typ" value="Ve dvojici / skupině" class="accent-[#003459]">
-                                    <span class="text-sm text-slate-700">Ve dvojici / skupině</span>
-                                </label>
-                                <label
-                                    class="flex items-center gap-2 p-3 border border-slate-200 rounded-lg cursor-pointer has-[:checked]:border-brand-dark has-[:checked]:bg-[#f0f9ff]">
-                                    <input type="radio" name="typ" value="Zatím nevím" class="accent-[#003459]">
-                                    <span class="text-sm text-slate-700">Zatím nevím</span>
-                                </label>
-                            </div>
-                        </fieldset>
-
-                        <div class="grid sm:grid-cols-2 gap-4">
-                            <div>
-                                <label for="t-zkusenosti" class="block text-sm font-semibold text-slate-700 mb-1">Zkušenosti
-                                    s boxem</label>
-                                <select id="t-zkusenosti" name="zkusenosti"
-                                    class="w-full px-4 py-3 border border-slate-200 rounded-lg bg-white focus:outline-none focus:border-brand-dark">
-                                    <option>Úplný začátečník</option>
-                                    <option>Trochu jsem už boxoval(a)</option>
-                                    <option>Pokročilý / závodník</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="t-kdy" class="block text-sm font-semibold text-slate-700 mb-1">Kdy se vám to
-                                    hodí?</label>
-                                <input id="t-kdy" name="kdy" type="text" placeholder="např. út a čt večer"
-                                    class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="t-zprava" class="block text-sm font-semibold text-slate-700 mb-1">Co od tréninků
-                                čekáte? <span class="font-normal text-slate-500">(nepovinné)</span></label>
-                            <textarea id="t-zprava" name="zprava" rows="3"
-                                placeholder="Kondice, technika, hubnutí, příprava na zápas…"
-                                class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark"></textarea>
-                        </div>
-
-                        <label class="flex items-start gap-2 text-sm text-slate-600 cursor-pointer">
-                            <input type="checkbox" name="souhlas" value="ano" required class="mt-1 accent-[#003459]">
-                            <span>Souhlasím s <a href="podminky.html" target="_blank"
-                                    class="text-brand-dark font-semibold underline hover:text-brand-light">obchodními
-                                    a storno podmínkami</a> a se zpracováním údajů pro domluvu tréninků.</span>
-                        </label>
-                        <button type="submit"
-                            class="w-full flex items-center justify-center gap-2 py-4 bg-brand-dark text-white font-bold rounded-lg hover:bg-[#004e8a] transition-colors shadow-lg shadow-blue-900/10">
-                            Odeslat a domluvit trénink <svg class="icon w-5 h-5" aria-hidden="true"><use href="#i-send" /></svg>
-                        </button>
-                        <p class="text-xs text-slate-500">
-                            Nezávazné. Ozvu se vám co nejdřív a domluvíme první trénink.
-                        </p>
-                    </form>
+                    <div class="md:w-1/3 flex flex-col items-center md:items-end gap-3 w-full">
+                        <a href="/zacit-trenovat.html"
+                            class="w-full md:w-auto px-8 py-4 bg-brand-dark text-white font-bold rounded-lg hover:bg-[#004e8a] transition-colors shadow-lg shadow-blue-900/10 text-center">
+                            Chci začít trénovat
+                        </a>
+                        <a href="tel:+420724396877" class="text-sm text-slate-600 hover:text-brand-dark">nebo volejte
+                            <strong>+420&nbsp;724&nbsp;396&nbsp;877</strong></a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1257,7 +912,7 @@
                                 class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">BOX
                                 CLUB Hradec Králové</a> a tréninky probíhají v jeho plně vybaveném zázemí
                             v Gayerových kasárnách. Pytle a atmosféra, která vás nabudí k výkonu.
-                            Chcete začít? <a href="#zacit" class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">Vyplňte krátký formulář</a> a ozvu se vám.
+                            Chcete začít? <a href="/zacit-trenovat.html" class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">Vyplňte krátký formulář</a> a ozvu se vám.
                         </p>
                     </div>
 
@@ -1315,8 +970,8 @@
     <!-- Footer -->
     <footer class="bg-brand-dark text-white py-12 border-t border-white/10">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="text-center md:text-left">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
+                <div class="text-center lg:text-left">
                     <div class="text-2xl font-bold tracking-tight">
                         MADER<span class="text-brand-light">BOXING</span>
                     </div>
@@ -1326,15 +981,11 @@
                     </p>
                 </div>
 
-                <!-- PŘIDÁNY ODKAZY NA STRÁNKY -->
-                <div class="flex justify-center gap-6">
-                    <a href="podminky.html" class="text-brand-light hover:text-white transition-colors text-sm">Obchodní
-                        podmínky</a>
-                    <a href="booking.html"
-                        class="text-brand-light hover:text-white transition-colors text-sm">Last minute termíny</a>
-                    <a href="#zacit" class="text-brand-light hover:text-white transition-colors text-sm">Začít trénovat</a>
-                    <a href="#poukazy" class="text-brand-light hover:text-white transition-colors text-sm">Dárkové poukazy</a>
-                    <a href="#faq" class="text-brand-light hover:text-white transition-colors text-sm">Časté dotazy</a>
+                <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                    <a href="/zacit-trenovat.html" class="text-brand-light hover:text-white transition-colors text-sm">Začít trénovat</a>
+                    <a href="/poukazy.html" class="text-brand-light hover:text-white transition-colors text-sm">Dárkové poukazy</a>
+                    <a href="/booking.html" class="text-brand-light hover:text-white transition-colors text-sm">Last minute termíny</a>
+                    <a href="/podminky.html" class="text-brand-light hover:text-white transition-colors text-sm">Obchodní podmínky</a>
                 </div>
 
                 <div class="text-slate-300 text-sm">
@@ -1368,7 +1019,6 @@
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
 
         function setMenuOpen(open) {
             mobileMenu.classList.toggle('hidden', !open);
@@ -1378,22 +1028,8 @@
             mobileMenuBtn.setAttribute('aria-label', open ? 'Zavřít menu' : 'Otevřít menu');
         }
 
-        mobileMenuBtn.addEventListener('click', () => {
-            setMenuOpen(mobileMenu.classList.contains('hidden'));
-        });
-
-        // Tlačítka v ceníku předvyplní typ tréninku ve formuláři
-        document.querySelectorAll('a[data-typ]').forEach((link) => {
-            link.addEventListener('click', () => {
-                const radio = document.querySelector(`form[name="trenink"] input[name="typ"][value="${link.dataset.typ}"]`);
-                if (radio) radio.checked = true;
-            });
-        });
-
-        // Close mobile menu when clicking a link
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => setMenuOpen(false));
-        });
+        mobileMenuBtn.addEventListener('click', () => setMenuOpen(mobileMenu.classList.contains('hidden')));
+        document.querySelectorAll('.mobile-link').forEach((link) => link.addEventListener('click', () => setMenuOpen(false)));
     </script>
 </body>
 
