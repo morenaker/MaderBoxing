@@ -101,7 +101,7 @@
                 "potentialAction": {
                     "@type": "ReserveAction",
                     "name": "Rezervovat lekci boxu",
-                    "target": "https://maderboxing.cz/booking.html"
+                    "target": "https://maderboxing.cz/#zacit"
                 },
                 "hasOfferCatalog": {
                     "@type": "OfferCatalog",
@@ -228,10 +228,10 @@
                     },
                     {
                         "@type": "Question",
-                        "name": "Jak si lekci boxu zarezervuji?",
+                        "name": "Jak se přihlásím na trénink boxu?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Jednorázový trénink si zarezervujete online v rezervačním systému na webu. Nové termíny se vypisují vždy v neděli na následující týden. Pokud chcete trénovat pravidelně, vyplňte na webu formulář Chci začít trénovat, zavolejte na +420 724 396 877 nebo mi napište na Instagram."
+                            "text": "Vyplňte formulář Chci začít trénovat, zavolejte na +420 724 396 877 nebo mi napište na Instagram. Ozvu se vám a domluvíme termín, který vám bude sedět."
                         }
                     },
                     {
@@ -239,7 +239,7 @@
                         "name": "Můžu rezervovaný trénink zrušit?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Ano, rezervaci lze bezplatně zrušit nejpozději 12 hodin před začátkem tréninku. Při pozdějším zrušení nebo neomluvené neúčasti se účtuje storno poplatek 50 % z ceny tréninku."
+                            "text": "Ano, trénink můžete bezplatně zrušit nejpozději den předem. Při zrušení v den tréninku nebo neomluvené neúčasti se účtuje storno poplatek 50 % z ceny tréninku, u dárkového poukazu se trénink odečte jako využitý."
                         }
                     },
                     {
@@ -320,7 +320,7 @@
                         class="hidden lg:inline text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Poukazy</a>
                     <a href="#contact"
                         class="text-sm font-medium hover:text-brand-light transition-colors uppercase tracking-wider text-brand-dark">Kontakt</a>
-                    <a href="booking.html"
+                    <a href="#zacit"
                         class="px-6 py-2 bg-brand-dark text-white font-semibold rounded-full hover:bg-[#004e8a] transition-colors shadow-lg shadow-blue-900/10">
                         Rezervovat lekci
                     </a>
@@ -343,7 +343,7 @@
                 <a href="#faq" class="mobile-link text-lg font-medium text-brand-dark">Časté dotazy</a>
                 <a href="#zacit" class="mobile-link text-lg font-medium text-brand-dark">Chci začít trénovat</a>
                 <a href="#contact" class="mobile-link text-lg font-medium text-brand-dark">Kontakt</a>
-                <a href="booking.html"
+                <a href="#zacit"
                     class="mobile-link px-8 py-3 bg-brand-dark text-white font-semibold rounded-full w-3/4 text-center">
                     Rezervovat lekci
                 </a>
@@ -711,7 +711,7 @@
                             </li>
                         </ul>
 
-                        <a href="booking.html"
+                        <a href="#zacit" data-typ="Individuální"
                             class="block w-full text-center py-3 bg-brand-dark text-white font-bold rounded-lg hover:bg-[#004e8a] transition-colors group-hover:shadow-lg">
                             Rezervovat individuálně
                         </a>
@@ -751,7 +751,7 @@
                             </li>
                         </ul>
 
-                        <a href="booking.html"
+                        <a href="#zacit" data-typ="Ve dvojici / skupině"
                             class="block w-full text-center py-3 bg-white border-2 border-brand-dark text-brand-dark font-bold rounded-lg hover:bg-[#f0f9ff] transition-colors">
                             Rezervovat pro skupinu
                         </a>
@@ -763,7 +763,7 @@
                     <p
                         class="text-sm text-slate-500 bg-slate-50 inline-block px-4 py-2 rounded-full border border-slate-100">
                         <svg class="icon inline w-4 h-4 mr-1 mb-0.5 text-brand-light" aria-hidden="true"><use href="#i-info" /></svg>
-                        Zrušení rezervace je bezplatné nejpozději 12 hodin předem. Více v <a href="podminky.html"
+                        Trénink můžete bezplatně zrušit nejpozději den předem. Více v <a href="podminky.html"
                             class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">obchodních
                             a storno podmínkách</a>.
                     </p>
@@ -954,13 +954,18 @@
                                 class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark"></textarea>
                         </div>
 
+                        <label class="flex items-start gap-2 text-sm text-slate-600 cursor-pointer">
+                            <input type="checkbox" name="souhlas" value="ano" required class="mt-1 accent-[#003459]">
+                            <span>Souhlasím s <a href="podminky.html" target="_blank"
+                                    class="text-brand-dark font-semibold underline hover:text-brand-light">obchodními
+                                    a storno podmínkami</a> a se zpracováním údajů pro vyřízení objednávky.</span>
+                        </label>
                         <button type="submit"
                             class="w-full flex items-center justify-center gap-2 py-4 bg-brand-dark text-white font-bold rounded-lg hover:bg-[#004e8a] transition-colors shadow-lg shadow-blue-900/10">
                             Objednat poukaz <svg class="icon w-5 h-5" aria-hidden="true"><use href="#i-send" /></svg>
                         </button>
                         <p class="text-xs text-slate-500">
-                            Objednávka je nezávazná, obratem se vám ozvu. Údaje použiji jen k vyřízení objednávky
-                            (viz <a href="podminky.html" class="underline hover:text-brand-dark">podmínky</a>).
+                            Objednávka je nezávazná, obratem vám pošlu platební údaje.
                         </p>
                     </form>
                 </div>
@@ -1028,16 +1033,13 @@
                     <details class="group bg-white rounded-xl border border-slate-100 shadow-sm">
                         <summary
                             class="flex items-center justify-between gap-4 cursor-pointer list-none p-6 text-brand-dark">
-                            <h3 class="text-lg font-bold">Jak si lekci boxu zarezervuji?</h3>
+                            <h3 class="text-lg font-bold">Jak se přihlásím na trénink boxu?</h3>
                             <svg class="icon w-5 h-5 shrink-0 transition-transform group-open:rotate-90" aria-hidden="true"><use href="#i-chevron-right" /></svg>
                         </summary>
                         <p class="px-6 pb-6 text-slate-600 leading-relaxed">
-                            Jednorázový trénink si zarezervujete online v <a href="booking.html"
-                                class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">rezervačním
-                                systému</a> na webu. Nové termíny se vypisují vždy v neděli na následující týden.
-                            Pokud chcete trénovat pravidelně, vyplňte <a href="#zacit" class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">formulář Chci začít
-                                trénovat</a>, zavolejte na <a href="tel:+420724396877" class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">+420 724 396 877</a>
-                            nebo mi napište na Instagram.
+                            Vyplňte <a href="#zacit" class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">formulář Chci začít trénovat</a>, zavolejte na
+                            <a href="tel:+420724396877" class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">+420 724 396 877</a> nebo mi napište na Instagram.
+                            Ozvu se vám a domluvíme termín, který vám bude sedět.
                         </p>
                     </details>
 
@@ -1048,8 +1050,9 @@
                             <svg class="icon w-5 h-5 shrink-0 transition-transform group-open:rotate-90" aria-hidden="true"><use href="#i-chevron-right" /></svg>
                         </summary>
                         <p class="px-6 pb-6 text-slate-600 leading-relaxed">
-                            Ano, rezervaci lze bezplatně zrušit nejpozději 12 hodin před začátkem tréninku. Při
-                            pozdějším zrušení nebo neomluvené neúčasti se účtuje storno poplatek 50 % z ceny tréninku.
+                            Ano, trénink můžete bezplatně zrušit nejpozději den předem. Při zrušení v den tréninku
+                            nebo neomluvené neúčasti se účtuje storno poplatek 50 % z ceny tréninku, u dárkového
+                            poukazu se trénink odečte jako využitý.
                             Podrobnosti najdete v <a href="podminky.html"
                                 class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">obchodních
                                 podmínkách</a>.
@@ -1138,10 +1141,8 @@
                         </ul>
 
                         <p class="text-sm text-slate-600">
-                            Chcete jen jednorázový trénink? Termín si můžete rovnou
-                            <a href="booking.html"
-                                class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">zarezervovat
-                                online</a>.
+                            Občas vypisuji i volné <a href="booking.html" class="text-brand-dark font-semibold hover:text-brand-light hover:underline transition-colors">last minute termíny</a>,
+                            které si můžete rovnou zarezervovat online.
                         </p>
                     </div>
 
@@ -1226,13 +1227,18 @@
                                 class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark"></textarea>
                         </div>
 
+                        <label class="flex items-start gap-2 text-sm text-slate-600 cursor-pointer">
+                            <input type="checkbox" name="souhlas" value="ano" required class="mt-1 accent-[#003459]">
+                            <span>Souhlasím s <a href="podminky.html" target="_blank"
+                                    class="text-brand-dark font-semibold underline hover:text-brand-light">obchodními
+                                    a storno podmínkami</a> a se zpracováním údajů pro domluvu tréninků.</span>
+                        </label>
                         <button type="submit"
                             class="w-full flex items-center justify-center gap-2 py-4 bg-brand-dark text-white font-bold rounded-lg hover:bg-[#004e8a] transition-colors shadow-lg shadow-blue-900/10">
                             Odeslat a domluvit trénink <svg class="icon w-5 h-5" aria-hidden="true"><use href="#i-send" /></svg>
                         </button>
                         <p class="text-xs text-slate-500">
-                            Nezávazné. Ozvu se vám co nejdřív a domluvíme první trénink. Údaje použiji jen k domluvě
-                            tréninků (viz <a href="podminky.html" class="underline hover:text-brand-dark">podmínky</a>).
+                            Nezávazné. Ozvu se vám co nejdřív a domluvíme první trénink.
                         </p>
                     </form>
                 </div>
@@ -1325,7 +1331,7 @@
                     <a href="podminky.html" class="text-brand-light hover:text-white transition-colors text-sm">Obchodní
                         podmínky</a>
                     <a href="booking.html"
-                        class="text-brand-light hover:text-white transition-colors text-sm">Rezervace</a>
+                        class="text-brand-light hover:text-white transition-colors text-sm">Last minute termíny</a>
                     <a href="#zacit" class="text-brand-light hover:text-white transition-colors text-sm">Začít trénovat</a>
                     <a href="#poukazy" class="text-brand-light hover:text-white transition-colors text-sm">Dárkové poukazy</a>
                     <a href="#faq" class="text-brand-light hover:text-white transition-colors text-sm">Časté dotazy</a>
@@ -1374,6 +1380,14 @@
 
         mobileMenuBtn.addEventListener('click', () => {
             setMenuOpen(mobileMenu.classList.contains('hidden'));
+        });
+
+        // Tlačítka v ceníku předvyplní typ tréninku ve formuláři
+        document.querySelectorAll('a[data-typ]').forEach((link) => {
+            link.addEventListener('click', () => {
+                const radio = document.querySelector(`form[name="trenink"] input[name="typ"][value="${link.dataset.typ}"]`);
+                if (radio) radio.checked = true;
+            });
         });
 
         // Close mobile menu when clicking a link
