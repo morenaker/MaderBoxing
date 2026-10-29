@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tisk dárkového poukazu | Mader Boxing</title>
+    <!-- Interní nástroj pro vystavení poukazu – nezobrazovat ve vyhledávačích -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        @page {
+            size: A5 landscape;
+            margin: 0;
+        }
+
+        .voucher {
+            width: 210mm;
+            height: 148mm;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        @media print {
+            html,
+            body {
+                background: #fff !important;
+            }
+
+            .voucher {
+                box-shadow: none !important;
+                border-radius: 0 !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans text-slate-800 bg-slate-100">
+
+    <main class="p-6 print:p-0">
+
+        <!-- Formulář (při tisku skrytý) -->
+        <div class="print:hidden max-w-[210mm] mx-auto mb-6 bg-white rounded-2xl shadow p-6 space-y-5">
+            <div>
+                <h1 class="text-2xl font-bold text-brand-dark">Vystavení dárkového poukazu</h1>
+                <p class="text-sm text-slate-600 mt-1">
+                    Vyplňte údaje a klikněte na <strong>Vytisknout / uložit PDF</strong>. V dialogu tisku zvolte
+                    „Uložit jako PDF“, formát A5 na šířku a zapněte „Grafika na pozadí“.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+                <label class="block">
+                    <span class="block text-sm font-semibold text-slate-700 mb-1">Poukaz</span>
+                    <select id="f-count" class="w-full px-3 py-2 border border-slate-200 rounded-lg">
+                        <option value="1">1 trénink</option>
+                        <option value="5">5 tréninků</option>
+                    </select>
+                </label>
+                <label class="block">
+                    <span class="block text-sm font-semibold text-slate-700 mb-1">Pro koho <span
+                            class="font-normal text-slate-500">(nepovinné)</span></span>
+                    <input id="f-pro" type="text" class="w-full px-3 py-2 border border-slate-200 rounded-lg">
+                </label>
+                <label class="block">
+                    <span class="block text-sm font-semibold text-slate-700 mb-1">Kód poukazu</span>
+                    <span class="flex gap-2">
+                        <input id="f-code" type="text"
+                            class="w-full px-3 py-2 border border-slate-200 rounded-lg font-mono uppercase">
+                        <button id="f-newcode" type="button"
+                            class="px-3 py-2 bg-slate-100 rounded-lg text-sm font-semibold text-brand-dark hover:bg-slate-200 whitespace-nowrap">Nový
+                            kód</button>
+                    </span>
+                </label>
+                <label class="block">
+                    <span class="block text-sm font-semibold text-slate-700 mb-1">Věnování <span
+                            class="font-normal text-slate-500">(nepovinné)</span></span>
+                    <input id="f-note" type="text" placeholder="Všechno nejlepší k narozeninám!"
+                        class="w-full px-3 py-2 border border-slate-200 rounded-lg">
+                </label>
+                <label class="block">
+                    <span class="block text-sm font-semibold text-slate-700 mb-1">Datum vystavení</span>
+                    <input id="f-issued" type="date" class="w-full px-3 py-2 border border-slate-200 rounded-lg">
+                </label>
+                <label class="block">
+                    <span class="block text-sm font-semibold text-slate-700 mb-1">Platnost do <span
+                            class="font-normal text-slate-500">(automaticky +6 měsíců)</span></span>
+                    <input id="f-valid" type="date" class="w-full px-3 py-2 border border-slate-200 rounded-lg">
+                </label>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                <button id="f-print" type="button"
+                    class="px-6 py-3 bg-brand-dark text-white font-bold rounded-lg hover:bg-[#004e8a] transition-colors">
+                    Vytisknout / uložit PDF
+                </button>
+                <p class="text-xs text-slate-500">
+                    Kód si zapište do přehledu prodaných poukazů (kód, jméno, zaplaceno, využité tréninky).
+                </p>
+            </div>
+        </div>
+
+        <!-- Poukaz -->
+        <div class="overflow-x-auto print:overflow-visible">
+            <div class="voucher mx-auto bg-brand-dark text-white rounded-2xl shadow-2xl overflow-hidden flex">
+                <div class="flex-1 p-[11mm] flex flex-col justify-between">
+                    <img src="img/mader-boxing-logo-white.png" alt="Mader Boxing" class="w-[42mm] h-auto">
+
+                    <div>
+                        <p class="text-brand-light font-bold uppercase tracking-[0.3em] text-[10pt] mb-[2mm]">Dárkový
+                            poukaz</p>
+                        <p id="v-title" class="font-extrabold leading-tight text-[26pt]">na 1 trénink boxu</p>
+                        <p class="text-slate-300 text-[10pt] mt-[2mm]">Soukromá lekce boxu (60 minut) s mistrem České
+                            republiky Samuelem Maderem</p>
+                        <p id="v-pro-row" class="mt-[5mm] text-[13pt]">Pro: <strong id="v-pro"></strong></p>
+                        <p id="v-note" class="italic text-slate-200 text-[11pt] mt-[1mm]"></p>
+                        <div id="v-stamps" class="flex gap-[3mm] mt-[5mm]" aria-label="Využité tréninky">
+                            <span class="w-[8mm] h-[8mm] rounded-full border-2 border-brand-light"></span>
+                            <span class="w-[8mm] h-[8mm] rounded-full border-2 border-brand-light"></span>
+                            <span class="w-[8mm] h-[8mm] rounded-full border-2 border-brand-light"></span>
+                            <span class="w-[8mm] h-[8mm] rounded-full border-2 border-brand-light"></span>
+                            <span class="w-[8mm] h-[8mm] rounded-full border-2 border-brand-light"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex gap-[8mm] text-[9pt] mb-[3mm]">
+                            <div>
+                                <p class="text-slate-400 uppercase tracking-wider">Kód</p>
+                                <p id="v-code" class="font-mono font-bold text-[12pt] text-brand-light"></p>
+                            </div>
+                            <div>
+                                <p class="text-slate-400 uppercase tracking-wider">Vystaveno</p>
+                                <p id="v-issued" class="font-bold text-[11pt]"></p>
+                            </div>
+                            <div>
+                                <p class="text-slate-400 uppercase tracking-wider">Platí do</p>
+                                <p id="v-valid" class="font-bold text-[11pt]"></p>
+                            </div>
+                        </div>
+                        <p class="text-[8pt] text-slate-300 leading-snug">
+                            Termín si domluvte na +420 724 396 877 nebo přes Instagram @sam_mader_ a uveďte kód poukazu.<br>
+                            BOX CLUB Hradec Králové, Československé armády 216/41 · maderboxing.cz
+                        </p>
+                    </div>
+                </div>
+
+                <div class="w-[64mm] relative">
+                    <img src="img/samuel-mader-trener-boxu-hradec-kralove-800.webp" alt=""
+                        class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-r from-brand-dark to-transparent"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const $ = (id) => document.getElementById(id);
+        const ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+        const pad = (n) => String(n).padStart(2, '0');
+        const toIso = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+        const toCz = (iso) => {
+            if (!iso) return '';
+            const [y, m, d] = iso.split('-');
+            return `${+d}. ${+m}. ${y}`;
+        };
+        const plusMonths = (iso, months) => {
+            const d = new Date(iso + 'T12:00:00');
+            d.setMonth(d.getMonth() + months);
+            return toIso(d);
+        };
+
+        function newCode() {
+            const nums = crypto.getRandomValues(new Uint32Array(4));
+            const part = Array.from(nums, (n) => ALPHABET[n % ALPHABET.length]).join('');
+            return `MB-${String(new Date().getFullYear()).slice(2)}-${part}`;
+        }
+
+        function render() {
+            const count = $('f-count').value;
+            $('v-title').textContent = count === '5' ? 'na 5 tréninků boxu' : 'na 1 trénink boxu';
+            $('v-stamps').style.display = count === '5' ? '' : 'none';
+
+            const pro = $('f-pro').value.trim();
+            $('v-pro').textContent = pro;
+            $('v-pro-row').style.display = pro ? '' : 'none';
+
+            $('v-note').textContent = $('f-note').value.trim();
+            $('v-code').textContent = $('f-code').value.trim().toUpperCase();
+            $('v-issued').textContent = toCz($('f-issued').value);
+            $('v-valid').textContent = toCz($('f-valid').value);
+        }
+
+        const today = toIso(new Date());
+        $('f-issued').value = today;
+        $('f-valid').value = plusMonths(today, 6);
+        $('f-code').value = newCode();
+
+        $('f-issued').addEventListener('change', () => {
+            if ($('f-issued').value) $('f-valid').value = plusMonths($('f-issued').value, 6);
+            render();
+        });
+        $('f-newcode').addEventListener('click', () => {
+            $('f-code').value = newCode();
+            render();
+        });
+        document.querySelectorAll('input, select').forEach((el) => el.addEventListener('input', render));
+
+        $('f-print').addEventListener('click', () => {
+            const code = $('f-code').value.trim().toUpperCase();
+            const previousTitle = document.title;
+            document.title = `Darkovy poukaz ${code}`; // výchozí název PDF souboru
+            window.print();
+            document.title = previousTitle;
+        });
+
+        render();
+    </script>
+</body>
+
+</html>
