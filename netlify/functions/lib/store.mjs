@@ -26,8 +26,11 @@ function memoryStore(name) {
     };
 }
 
-export function store(name) {
-    return process.env.MB_MEMORY_STORE ? memoryStore(name) : getStore({ name, consistency: 'strong' });
+// Silná konzistence (admin hned vidí své změny) funguje jen v moderních funkcích (admin-api);
+// funkce submission-created běží v režimu Lambda a musí použít výchozí konzistenci.
+export function store(name, { strong = false } = {}) {
+    if (process.env.MB_MEMORY_STORE) return memoryStore(name);
+    return getStore(strong ? { name, consistency: 'strong' } : name);
 }
 
 export async function listJSON(blobStore) {

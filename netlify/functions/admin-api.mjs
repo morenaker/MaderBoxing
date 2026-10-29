@@ -53,8 +53,8 @@ export default async (req) => {
             return json({ error: 'Nejste přihlášený.' }, 401);
         }
 
-        const orders = store('orders');
-        const vouchers = store('vouchers');
+        const orders = store('orders', { strong: true });
+        const vouchers = store('vouchers', { strong: true });
 
         // --- Objednávky z formuláře na webu ---
         if (route === 'orders' && method === 'GET') {
@@ -77,7 +77,7 @@ export default async (req) => {
         }
 
         // --- Zájemci o trénink ---
-        const leads = store('leads');
+        const leads = store('leads', { strong: true });
 
         if (route === 'leads' && method === 'GET') {
             return json(await listJSON(leads));
