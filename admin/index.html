@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrace | Mader Boxing</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#003459">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="font-sans text-slate-800 bg-slate-100 min-h-screen">
+
+    <header class="bg-brand-dark text-white">
+        <div class="container mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
+            <a href="/" class="text-xl font-bold tracking-tight">MADER<span class="text-brand-light">BOXING</span>
+                <span class="font-normal text-slate-300 text-base ml-1">· administrace</span></a>
+            <button id="logout" type="button" class="hidden text-sm text-brand-light hover:text-white">Odhlásit</button>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 py-8">
+
+        <!-- Přihlášení -->
+        <section id="login" class="hidden max-w-sm mx-auto bg-white rounded-2xl shadow p-8">
+            <h1 class="text-2xl font-bold text-brand-dark mb-6">Přihlášení</h1>
+            <form id="login-form" class="space-y-4">
+                <label class="block">
+                    <span class="block text-sm font-semibold text-slate-700 mb-1">Heslo</span>
+                    <input id="login-password" type="password" required autocomplete="current-password"
+                        class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark">
+                </label>
+                <button type="submit"
+                    class="w-full py-3 bg-brand-dark text-white font-bold rounded-lg hover:bg-[#004e8a] transition-colors">Přihlásit</button>
+                <p id="login-error" class="hidden text-sm text-red-600"></p>
+            </form>
+        </section>
+
+        <!-- Aplikace -->
+        <section id="app" class="hidden space-y-6">
+            <div id="flash" class="hidden rounded-lg px-4 py-3 text-sm font-medium"></div>
+
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <nav class="flex gap-2" aria-label="Sekce administrace">
+                    <button type="button" data-tab="orders"
+                        class="tab px-4 py-2 rounded-full text-sm font-semibold">Objednávky <span id="badge-orders"
+                            class="ml-1 hidden px-2 py-0.5 rounded-full bg-red-500 text-white text-xs"></span></button>
+                    <button type="button" data-tab="vouchers"
+                        class="tab px-4 py-2 rounded-full text-sm font-semibold">Vydané poukazy</button>
+                </nav>
+                <button id="new-voucher" type="button"
+                    class="px-5 py-2 bg-brand-dark text-white font-semibold rounded-full hover:bg-[#004e8a] transition-colors">+
+                    Vystavit poukaz</button>
+            </div>
+
+            <!-- Objednávky -->
+            <div id="tab-orders" class="space-y-4">
+                <div class="flex items-center justify-between gap-4">
+                    <p class="text-sm text-slate-600">Objednávky dárkových poukazů z formuláře na webu. Až zákazník
+                        zaplatí, klikněte na <strong>Zaplaceno – poslat poukaz</strong>.</p>
+                    <select id="orders-filter" class="px-3 py-2 border border-slate-200 rounded-lg text-sm bg-white">
+                        <option value="open">Nevyřízené</option>
+                        <option value="all">Všechny</option>
+                    </select>
+                </div>
+                <div id="orders" class="grid gap-4 lg:grid-cols-2"></div>
+            </div>
+
+            <!-- Vydané poukazy -->
+            <div id="tab-vouchers" class="hidden space-y-4">
+                <p class="text-sm text-slate-600">Odeslané poukazy. Po každém tréninku odečtěte vstup tlačítkem
+                    <strong>−</strong>.</p>
+                <div id="vouchers" class="grid gap-4 lg:grid-cols-2"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Dialog: poslat poukaz -->
+    <dialog id="send-dialog" class="w-full max-w-lg rounded-2xl p-0 shadow-2xl backdrop:bg-slate-900/50">
+        <form id="send-form" class="p-6 space-y-4">
+            <div class="flex items-start justify-between gap-4">
+                <h2 class="text-xl font-bold text-brand-dark">Poslat poukaz</h2>
+                <button type="button" data-close class="text-slate-400 hover:text-slate-700 text-2xl leading-none"
+                    aria-label="Zavřít">&times;</button>
+            </div>
+            <input type="hidden" name="orderId">
+
+            <label class="block">
+                <span class="block text-sm font-semibold text-slate-700 mb-1">E-mail zákazníka</span>
+                <input name="email" type="email" required list="email-list"
+                    class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark">
+                <datalist id="email-list"></datalist>
+            </label>
+
+            <div class="grid grid-cols-2 gap-4">
+                <label class="block">
+                    <span class="block text-sm font-semibold text-slate-700 mb-1">Počet vstupů</span>
+                    <input name="count" type="number" min="1" max="10" value="1" required
+                        class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark">
+                </label>
+                <label class="block">
+                    <span class="block text-sm font-semibold text-slate-700 mb-1">Pro koho <span
+                            class="font-normal text-slate-500">(na poukaz)</span></span>
+                    <input name="recipient" type="text" maxlength="60"
+                        class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark">
+                </label>
+            </div>
+
+            <label class="block">
+                <span class="block text-sm font-semibold text-slate-700 mb-1">Věnování <span
+                        class="font-normal text-slate-500">(nepovinné)</span></span>
+                <input name="dedication" type="text" maxlength="120" placeholder="Všechno nejlepší k narozeninám!"
+                    class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark">
+            </label>
+
+            <div class="grid grid-cols-2 gap-4">
+                <label class="block">
+                    <span class="block text-sm font-semibold text-slate-700 mb-1">Vystaveno</span>
+                    <input name="issuedAt" type="date" required
+                        class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark">
+                </label>
+                <label class="block">
+                    <span class="block text-sm font-semibold text-slate-700 mb-1">Platí do</span>
+                    <input name="validUntil" type="date" required
+                        class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-dark">
+                </label>
+            </div>
+
+            <p id="send-error" class="hidden text-sm text-red-600"></p>
+
+            <div class="flex flex-wrap justify-end gap-3 pt-2">
+                <button type="button" id="preview"
+                    class="px-4 py-2 bg-slate-100 text-brand-dark font-semibold rounded-lg hover:bg-slate-200">Náhled
+                    PDF</button>
+                <button type="submit" id="send-submit"
+                    class="px-5 py-2 bg-brand-dark text-white font-semibold rounded-lg hover:bg-[#004e8a] disabled:opacity-50">Odeslat
+                    poukaz e-mailem</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script>
+        const API = '/api/admin';
+        const TOKEN_KEY = 'mb-admin-token';
+        const $ = (sel, root = document) => root.querySelector(sel);
+
+        const storage = {
+            get() { try { return localStorage.getItem(TOKEN_KEY); } catch { return null; } },
+            set(v) { try { localStorage.setItem(TOKEN_KEY, v); } catch { } },
+            clear() { try { localStorage.removeItem(TOKEN_KEY); } catch { } },
+        };
+        let token = storage.get();
+        let orders = [];
+        let vouchers = [];
+
+        // ---------- pomocné ----------
+        const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+        const pad = (n) => String(n).padStart(2, '0');
+        const todayIso = () => { const d = new Date(); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; };
+        const addMonths = (iso, m) => { const [y, mo, d] = iso.split('-').map(Number); const x = new Date(Date.UTC(y, mo - 1 + m, d)); return x.toISOString().slice(0, 10); };
+        const dateCz = (iso) => { if (!iso) return ''; const [y, m, d] = iso.slice(0, 10).split('-'); return `${+d}. ${+m}. ${y}`; };
+        const dateTimeCz = (iso) => new Date(iso).toLocaleString('cs-CZ', { day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        const trainings = (n) => n === 1 ? '1 trénink' : n <= 4 ? `${n} tréninky` : `${n} tréninků`;
+
+        function flash(text, ok = true) {
+            const el = $('#flash');
+            el.textContent = text;
+            el.className = `rounded-lg px-4 py-3 text-sm font-medium ${ok ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
+            clearTimeout(flash.t);
+            flash.t = setTimeout(() => el.classList.add('hidden'), 6000);
+        }
+
+        async function api(path, { method = 'GET', body, raw = false } = {}) {
+            const headers = {};
+            if (token) headers.authorization = `Bearer ${token}`;
+            if (body) headers['content-type'] = 'application/json';
+            const res = await fetch(API + path, { method, headers, body: body ? JSON.stringify(body) : undefined });
+            if (res.status === 401 && path !== '/login') {
+                showLogin('Přihlášení vypršelo, přihlaste se znovu.');
+                throw new Error('Nejste přihlášený.');
+            }
+            if (!res.ok) {
+                let msg = `Chyba ${res.status}`;
+                try { msg = (await res.json()).error || msg; } catch { }
+                throw new Error(msg);
+            }
+            return raw ? res : res.json();
+        }
+
+        // ---------- přihlášení ----------
+        function showLogin(message) {
+            token = null;
+            storage.clear();
+            $('#app').classList.add('hidden');
+            $('#logout').classList.add('hidden');
+            $('#login').classList.remove('hidden');
+            const err = $('#login-error');
+            err.textContent = message || '';
+            err.classList.toggle('hidden', !message);
+            $('#login-password').value = '';
+            $('#login-password').focus();
+        }
+
+        function showApp() {
+            $('#login').classList.add('hidden');
+            $('#app').classList.remove('hidden');
+            $('#logout').classList.remove('hidden');
+            loadAll();
+        }
+
+        $('#login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            try {
+                const { token: t } = await api('/login', { method: 'POST', body: { password: $('#login-password').value } });
+                token = t;
+                storage.set(t);
+                $('#login-password').value = '';
+                showApp();
+            } catch (err) {
+                showLogin(err.message);
+            }
+        });
+
+        $('#logout').addEventListener('click', () => showLogin());
+
+        // ---------- záložky ----------
+        function setTab(name) {
+            document.querySelectorAll('.tab').forEach((b) => {
+                const active = b.dataset.tab === name;
+                b.className = `tab px-4 py-2 rounded-full text-sm font-semibold ${active ? 'bg-brand-dark text-white' : 'bg-white text-brand-dark hover:bg-slate-50'}`;
+            });
+            $('#tab-orders').classList.toggle('hidden', name !== 'orders');
+            $('#tab-vouchers').classList.toggle('hidden', name !== 'vouchers');
+        }
+        document.querySelectorAll('.tab').forEach((b) => b.addEventListener('click', () => setTab(b.dataset.tab)));
+
+        // ---------- data ----------
+        async function loadAll() {
+            try {
+                [orders, vouchers] = await Promise.all([api('/orders'), api('/vouchers')]);
+                renderOrders();
+                renderVouchers();
+            } catch (err) {
+                flash(err.message, false);
+            }
+        }
+
+        const STATUS = {
+            new: ['Čeká na platbu', 'bg-amber-100 text-amber-800'],
+            sent: ['Poukaz odeslán', 'bg-green-100 text-green-800'],
+            cancelled: ['Zrušeno', 'bg-slate-200 text-slate-600'],
+        };
+
+        function renderOrders() {
+            const open = orders.filter((o) => o.status === 'new');
+            const badge = $('#badge-orders');
+            badge.textContent = open.length;
+            badge.classList.toggle('hidden', open.length === 0);
+
+            $('#email-list').innerHTML = [...new Set(orders.map((o) => o.email).filter(Boolean))]
+                .map((e) => `<option value="${esc(e)}"></option>`).join('');
+
+            const list = $('#orders-filter').value === 'open' ? open : orders;
+            $('#orders').innerHTML = list.length ? list.map((o) => {
+                const [label, cls] = STATUS[o.status] || STATUS.new;
+                return `<article class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 space-y-3" data-id="${esc(o.id)}">
+                    <div class="flex items-start justify-between gap-3">
+                        <div>
+                            <h3 class="font-bold text-brand-dark text-lg">${esc(o.name) || '(bez jména)'}</h3>
+                            <p class="text-xs text-slate-500">${esc(dateTimeCz(o.createdAt))}</p>
+                        </div>
+                        <span class="shrink-0 px-2 py-1 rounded-full text-xs font-semibold ${cls}">${label}</span>
+                    </div>
+                    <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+                        <dt class="text-slate-500">Poukaz</dt><dd class="font-semibold">${esc(o.voucher) || esc(trainings(o.count))}</dd>
+                        <dt class="text-slate-500">E-mail</dt><dd><a class="text-brand-dark underline break-all" href="mailto:${esc(o.email)}">${esc(o.email)}</a></dd>
+                        ${o.phone ? `<dt class="text-slate-500">Telefon</dt><dd><a class="text-brand-dark underline" href="tel:${esc(o.phone)}">${esc(o.phone)}</a></dd>` : ''}
+                        ${o.recipient ? `<dt class="text-slate-500">Pro koho</dt><dd>${esc(o.recipient)}</dd>` : ''}
+                        ${o.note ? `<dt class="text-slate-500">Poznámka</dt><dd class="whitespace-pre-line">${esc(o.note)}</dd>` : ''}
+                        ${o.sentAt ? `<dt class="text-slate-500">Odesláno</dt><dd>${esc(dateTimeCz(o.sentAt))}</dd>` : ''}
+                    </dl>
+                    <div class="flex flex-wrap gap-2 pt-1">
+                        ${o.status === 'new' ? `<button type="button" data-action="send" class="px-4 py-2 bg-brand-dark text-white text-sm font-semibold rounded-lg hover:bg-[#004e8a]">Zaplaceno – poslat poukaz</button>
+                        <button type="button" data-action="cancel" class="px-3 py-2 bg-slate-100 text-slate-700 text-sm font-semibold rounded-lg hover:bg-slate-200">Zrušit</button>` : ''}
+                        ${o.status === 'cancelled' ? `<button type="button" data-action="reopen" class="px-3 py-2 bg-slate-100 text-slate-700 text-sm font-semibold rounded-lg hover:bg-slate-200">Obnovit</button>` : ''}
+                        <button type="button" data-action="delete" class="px-3 py-2 text-red-600 text-sm font-semibold rounded-lg hover:bg-red-50">Smazat</button>
+                    </div>
+                </article>`;
+            }).join('') : `<p class="text-slate-500 bg-white rounded-2xl p-6">Žádné ${$('#orders-filter').value === 'open' ? 'nevyřízené ' : ''}objednávky.</p>`;
+        }
+
+        function renderVouchers() {
+            $('#vouchers').innerHTML = vouchers.length ? vouchers.map((v) => {
+                const left = v.count - (v.used || 0);
+                const expired = v.validUntil < todayIso();
+                const dots = Array.from({ length: v.count }, (_, i) =>
+                    `<span class="w-4 h-4 rounded-full border-2 border-brand-dark ${i < (v.used || 0) ? 'bg-brand-dark' : ''}"></span>`).join('');
+                return `<article class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 space-y-3" data-id="${esc(v.id)}">
+                    <div class="flex items-start justify-between gap-3">
+                        <div>
+                            <h3 class="font-bold text-brand-dark text-lg">${esc(v.recipient) || esc(v.email)}</h3>
+                            <p class="text-sm text-slate-500 break-all">${esc(v.email)}</p>
+                        </div>
+                        <span class="shrink-0 px-2 py-1 rounded-full text-xs font-semibold ${expired ? 'bg-red-100 text-red-700' : left === 0 ? 'bg-slate-200 text-slate-600' : 'bg-green-100 text-green-800'}">
+                            ${expired ? 'Propadlý' : left === 0 ? 'Vyčerpaný' : 'Platný'}</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button type="button" data-action="use" ${left === 0 ? 'disabled' : ''} class="w-9 h-9 rounded-lg bg-brand-dark text-white text-lg font-bold disabled:opacity-30" aria-label="Odečíst vstup">−</button>
+                        <div class="flex flex-wrap gap-1">${dots}</div>
+                        <button type="button" data-action="unuse" ${(v.used || 0) === 0 ? 'disabled' : ''} class="w-9 h-9 rounded-lg bg-slate-100 text-brand-dark text-lg font-bold disabled:opacity-30" aria-label="Vrátit vstup">+</button>
+                        <span class="text-sm text-slate-600">zbývá <strong>${left}</strong> z ${v.count}</span>
+                    </div>
+                    <p class="text-sm text-slate-600">Vystaveno ${esc(dateCz(v.issuedAt))} · platí do <strong class="${expired ? 'text-red-600' : ''}">${esc(dateCz(v.validUntil))}</strong></p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" data-action="pdf" class="px-3 py-2 bg-slate-100 text-brand-dark text-sm font-semibold rounded-lg hover:bg-slate-200">Stáhnout PDF</button>
+                        <button type="button" data-action="resend" class="px-3 py-2 bg-slate-100 text-brand-dark text-sm font-semibold rounded-lg hover:bg-slate-200">Poslat znovu</button>
+                        <button type="button" data-action="delete" class="px-3 py-2 text-red-600 text-sm font-semibold rounded-lg hover:bg-red-50">Smazat</button>
+                    </div>
+                </article>`;
+            }).join('') : '<p class="text-slate-500 bg-white rounded-2xl p-6">Zatím žádné vydané poukazy.</p>';
+        }
+
+        $('#orders-filter').addEventListener('change', renderOrders);
+
+        // Mazání na dvě kliknutí (bez systémového potvrzovacího okna)
+        function confirmTwice(btn) {
+            if (btn.dataset.armed) return true;
+            btn.dataset.armed = '1';
+            btn.textContent = 'Opravdu smazat?';
+            setTimeout(() => { delete btn.dataset.armed; btn.textContent = 'Smazat'; }, 4000);
+            return false;
+        }
+
+        $('#orders').addEventListener('click', async (e) => {
+            const btn = e.target.closest('button[data-action]');
+            if (!btn) return;
+            const order = orders.find((o) => o.id === btn.closest('article').dataset.id);
+            try {
+                if (btn.dataset.action === 'send') return openSend(order);
+                if (btn.dataset.action === 'cancel') await api(`/orders/${order.id}`, { method: 'PATCH', body: { status: 'cancelled' } });
+                if (btn.dataset.action === 'reopen') await api(`/orders/${order.id}`, { method: 'PATCH', body: { status: 'new' } });
+                if (btn.dataset.action === 'delete') {
+                    if (!confirmTwice(btn)) return;
+                    await api(`/orders/${order.id}`, { method: 'DELETE' });
+                }
+                await loadAll();
+            } catch (err) { flash(err.message, false); }
+        });
+
+        async function downloadPdf(res, filename) {
+            const url = URL.createObjectURL(await res.blob());
+            const a = Object.assign(document.createElement('a'), { href: url, download: filename });
+            document.body.append(a);
+            a.click();
+            a.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 10000);
+        }
+
+        $('#vouchers').addEventListener('click', async (e) => {
+            const btn = e.target.closest('button[data-action]');
+            if (!btn) return;
+            const v = vouchers.find((x) => x.id === btn.closest('article').dataset.id);
+            try {
+                switch (btn.dataset.action) {
+                    case 'use': await api(`/vouchers/${v.id}`, { method: 'PATCH', body: { used: (v.used || 0) + 1 } }); break;
+                    case 'unuse': await api(`/vouchers/${v.id}`, { method: 'PATCH', body: { used: (v.used || 0) - 1 } }); break;
+                    case 'pdf': return downloadPdf(await api(`/vouchers/${v.id}/pdf`, { raw: true }), 'Darkovy-poukaz-Mader-Boxing.pdf');
+                    case 'resend':
+                        btn.disabled = true;
+                        await api(`/vouchers/${v.id}/resend`, { method: 'POST' });
+                        flash(`Poukaz znovu odeslán na ${v.email}.`);
+                        break;
+                    case 'delete':
+                        if (!confirmTwice(btn)) return;
+                        await api(`/vouchers/${v.id}`, { method: 'DELETE' });
+                        break;
+                }
+                await loadAll();
+            } catch (err) { flash(err.message, false); btn.disabled = false; }
+        });
+
+        // ---------- dialog poslat poukaz ----------
+        const dialog = $('#send-dialog');
+        const form = $('#send-form');
+
+        function openSend(order) {
+            form.reset();
+            const issued = todayIso();
+            form.orderId.value = order?.id || '';
+            form.email.value = order?.email || '';
+            form.count.value = order?.count || 1;
+            form.recipient.value = order?.recipient || '';
+            form.issuedAt.value = issued;
+            form.validUntil.value = addMonths(issued, 6);
+            $('#send-error').classList.add('hidden');
+            $('#send-submit').disabled = false;
+            dialog.showModal();
+        }
+
+        form.issuedAt.addEventListener('change', () => {
+            if (form.issuedAt.value) form.validUntil.value = addMonths(form.issuedAt.value, 6);
+        });
+        dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
+        $('#new-voucher').addEventListener('click', () => openSend(null));
+
+        const formData = () => ({
+            orderId: form.orderId.value || null,
+            email: form.email.value.trim(),
+            count: Number(form.count.value),
+            recipient: form.recipient.value.trim(),
+            dedication: form.dedication.value.trim(),
+            issuedAt: form.issuedAt.value,
+            validUntil: form.validUntil.value,
+        });
+
+        $('#preview').addEventListener('click', async () => {
+            const win = window.open('', '_blank'); // otevřít hned, jinak ho prohlížeč zablokuje
+            try {
+                const res = await api('/vouchers/preview', { method: 'POST', body: formData(), raw: true });
+                const url = URL.createObjectURL(await res.blob());
+                if (win) win.location = url; else window.location = url;
+            } catch (err) {
+                if (win) win.close();
+                $('#send-error').textContent = err.message;
+                $('#send-error').classList.remove('hidden');
+            }
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submit = $('#send-submit');
+            submit.disabled = true;
+            submit.textContent = 'Odesílám…';
+            try {
+                const data = formData();
+                await api('/vouchers', { method: 'POST', body: data });
+                dialog.close();
+                flash(`Poukaz na ${trainings(data.count)} odeslán na ${data.email}.`);
+                await loadAll();
+            } catch (err) {
+                $('#send-error').textContent = err.message;
+                $('#send-error').classList.remove('hidden');
+            } finally {
+                submit.disabled = false;
+                submit.textContent = 'Odeslat poukaz e-mailem';
+            }
+        });
+
+        // ---------- start ----------
+        setTab('orders');
+        if (token) showApp(); else showLogin();
+    </script>
+</body>
+
+</html>

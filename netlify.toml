@@ -1,8 +1,46 @@
-# Při každém nasazení se z HTML vygeneruje css/style.css (Tailwind).
-# Lokálně stejný příkaz: npx tailwindcss@3.4.17 -c tailwind.config.js -i src/input.css -o css/style.css --minify
+# Při každém nasazení se z HTML vygeneruje css/style.css (Tailwind) a sestaví se funkce administrace.
+# Lokálně: npm install && npm run build
 [build]
   publish = "."
-  command = "npx --yes tailwindcss@3.4.17 -c tailwind.config.js -i src/input.css -o css/style.css --minify"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Zdrojové a pomocné soubory nemají být dostupné na webu
+[[redirects]]
+  from = "/node_modules/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/netlify/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/src/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package.json"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package-lock.json"
+  to = "/404"
+  status = 404
+  force = true
 
 [[headers]]
   for = "/img/*"
@@ -14,3 +52,10 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    X-Frame-Options = "DENY"
+    Cache-Control = "no-store"
