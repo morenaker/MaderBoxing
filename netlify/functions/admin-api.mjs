@@ -76,6 +76,28 @@ export default async (req) => {
             }
         }
 
+        // --- Zájemci o trénink ---
+        const leads = store('leads');
+
+        if (route === 'leads' && method === 'GET') {
+            return json(await listJSON(leads));
+        }
+
+        if ((match = route.match(/^leads\/([\w-]+)$/))) {
+            const lead = await getOr404(leads, match[1], 'Zájemce nebyl nalezen.');
+            if (method === 'PATCH') {
+                const { status } = await readJson(req);
+                if (!['new', 'contacted'].includes(status)) throw new PublicError('Neplatný stav.');
+                lead.status = status;
+                await leads.setJSON(lead.id, lead);
+                return json(lead);
+            }
+            if (method === 'DELETE') {
+                await leads.delete(lead.id);
+                return json({ ok: true });
+            }
+        }
+
         // --- Poukazy ---
         if (route === 'vouchers' && method === 'GET') {
             return json(await listJSON(vouchers));

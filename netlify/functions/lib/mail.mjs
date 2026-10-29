@@ -11,7 +11,7 @@ function transport() {
         return nodemailer.createTransport({ streamTransport: true, buffer: true });
     }
     const user = process.env.SMTP_USER;
-    const pass = process.env.SMTP_PASS;
+    const pass = process.env.SMTP_PASS || process.env.STMP_PASS; // STMP_PASS = název použitý v Netlify
     if (!user || !pass) {
         throw new PublicError('Odesílání e-mailů ještě není nastavené: v Netlify chybí SMTP_USER a SMTP_PASS.', 503);
     }

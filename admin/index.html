@@ -44,12 +44,15 @@
             <div id="flash" class="hidden rounded-lg px-4 py-3 text-sm font-medium"></div>
 
             <div class="flex flex-wrap items-center justify-between gap-4">
-                <nav class="flex gap-2" aria-label="Sekce administrace">
+                <nav class="flex flex-wrap gap-2" aria-label="Sekce administrace">
                     <button type="button" data-tab="orders"
                         class="tab px-4 py-2 rounded-full text-sm font-semibold">Objednávky <span id="badge-orders"
                             class="ml-1 hidden px-2 py-0.5 rounded-full bg-red-500 text-white text-xs"></span></button>
                     <button type="button" data-tab="vouchers"
                         class="tab px-4 py-2 rounded-full text-sm font-semibold">Vydané poukazy</button>
+                    <button type="button" data-tab="leads"
+                        class="tab px-4 py-2 rounded-full text-sm font-semibold">Zájemci <span id="badge-leads"
+                            class="ml-1 hidden px-2 py-0.5 rounded-full bg-red-500 text-white text-xs"></span></button>
                 </nav>
                 <button id="new-voucher" type="button"
                     class="px-5 py-2 bg-brand-dark text-white font-semibold rounded-full hover:bg-[#004e8a] transition-colors">+
@@ -74,6 +77,19 @@
                 <p class="text-sm text-slate-600">Odeslané poukazy. Po každém tréninku odečtěte vstup tlačítkem
                     <strong>−</strong>.</p>
                 <div id="vouchers" class="grid gap-4 lg:grid-cols-2"></div>
+            </div>
+
+            <!-- Zájemci o trénink -->
+            <div id="tab-leads" class="hidden space-y-4">
+                <div class="flex items-center justify-between gap-4">
+                    <p class="text-sm text-slate-600">Lidé, kteří vyplnili formulář <strong>Chci začít trénovat</strong>.
+                        Až se jim ozvete, označte je jako vyřízené.</p>
+                    <select id="leads-filter" class="px-3 py-2 border border-slate-200 rounded-lg text-sm bg-white">
+                        <option value="open">Nevyřízení</option>
+                        <option value="all">Všichni</option>
+                    </select>
+                </div>
+                <div id="leads" class="grid gap-4 lg:grid-cols-2"></div>
             </div>
         </section>
     </main>
@@ -155,6 +171,7 @@
         let token = storage.get();
         let orders = [];
         let vouchers = [];
+        let leads = [];
 
         // ---------- pomocné ----------
         const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -234,15 +251,17 @@
             });
             $('#tab-orders').classList.toggle('hidden', name !== 'orders');
             $('#tab-vouchers').classList.toggle('hidden', name !== 'vouchers');
+            $('#tab-leads').classList.toggle('hidden', name !== 'leads');
         }
         document.querySelectorAll('.tab').forEach((b) => b.addEventListener('click', () => setTab(b.dataset.tab)));
 
         // ---------- data ----------
         async function loadAll() {
             try {
-                [orders, vouchers] = await Promise.all([api('/orders'), api('/vouchers')]);
+                [orders, vouchers, leads] = await Promise.all([api('/orders'), api('/vouchers'), api('/leads')]);
                 renderOrders();
                 renderVouchers();
+                renderLeads();
             } catch (err) {
                 flash(err.message, false);
             }
@@ -322,6 +341,55 @@
                 </article>`;
             }).join('') : '<p class="text-slate-500 bg-white rounded-2xl p-6">Zatím žádné vydané poukazy.</p>';
         }
+
+        function renderLeads() {
+            const open = leads.filter((l) => l.status === 'new');
+            const badge = $('#badge-leads');
+            badge.textContent = open.length;
+            badge.classList.toggle('hidden', open.length === 0);
+
+            const list = $('#leads-filter').value === 'open' ? open : leads;
+            $('#leads').innerHTML = list.length ? list.map((l) => `<article class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 space-y-3" data-id="${esc(l.id)}">
+                    <div class="flex items-start justify-between gap-3">
+                        <div>
+                            <h3 class="font-bold text-brand-dark text-lg">${esc(l.name) || '(bez jména)'}</h3>
+                            <p class="text-xs text-slate-500">${esc(dateTimeCz(l.createdAt))}</p>
+                        </div>
+                        <span class="shrink-0 px-2 py-1 rounded-full text-xs font-semibold ${l.status === 'new' ? 'bg-amber-100 text-amber-800' : 'bg-green-100 text-green-800'}">${l.status === 'new' ? 'Nový' : 'Vyřízeno'}</span>
+                    </div>
+                    <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+                        ${l.phone ? `<dt class="text-slate-500">Telefon</dt><dd><a class="text-brand-dark underline" href="tel:${esc(l.phone)}">${esc(l.phone)}</a></dd>` : ''}
+                        <dt class="text-slate-500">E-mail</dt><dd><a class="text-brand-dark underline break-all" href="mailto:${esc(l.email)}">${esc(l.email)}</a></dd>
+                        <dt class="text-slate-500">Trénink</dt><dd class="font-semibold">${esc(l.type)}</dd>
+                        <dt class="text-slate-500">Zkušenosti</dt><dd>${esc(l.experience)}</dd>
+                        ${l.when ? `<dt class="text-slate-500">Kdy</dt><dd>${esc(l.when)}</dd>` : ''}
+                        ${l.message ? `<dt class="text-slate-500">Zpráva</dt><dd class="whitespace-pre-line">${esc(l.message)}</dd>` : ''}
+                    </dl>
+                    <div class="flex flex-wrap gap-2 pt-1">
+                        ${l.status === 'new'
+                    ? `<button type="button" data-action="done" class="px-4 py-2 bg-brand-dark text-white text-sm font-semibold rounded-lg hover:bg-[#004e8a]">Ozval jsem se – vyřízeno</button>`
+                    : `<button type="button" data-action="reopen" class="px-3 py-2 bg-slate-100 text-slate-700 text-sm font-semibold rounded-lg hover:bg-slate-200">Vrátit mezi nevyřízené</button>`}
+                        <button type="button" data-action="delete" class="px-3 py-2 text-red-600 text-sm font-semibold rounded-lg hover:bg-red-50">Smazat</button>
+                    </div>
+                </article>`).join('') : `<p class="text-slate-500 bg-white rounded-2xl p-6">Žádní ${$('#leads-filter').value === 'open' ? 'nevyřízení ' : ''}zájemci.</p>`;
+        }
+
+        $('#leads-filter').addEventListener('change', renderLeads);
+
+        $('#leads').addEventListener('click', async (e) => {
+            const btn = e.target.closest('button[data-action]');
+            if (!btn) return;
+            const id = btn.closest('article').dataset.id;
+            try {
+                if (btn.dataset.action === 'done') await api(`/leads/${id}`, { method: 'PATCH', body: { status: 'contacted' } });
+                if (btn.dataset.action === 'reopen') await api(`/leads/${id}`, { method: 'PATCH', body: { status: 'new' } });
+                if (btn.dataset.action === 'delete') {
+                    if (!confirmTwice(btn)) return;
+                    await api(`/leads/${id}`, { method: 'DELETE' });
+                }
+                await loadAll();
+            } catch (err) { flash(err.message, false); }
+        });
 
         $('#orders-filter').addEventListener('change', renderOrders);
 
